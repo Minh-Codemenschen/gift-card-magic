@@ -1,0 +1,101 @@
+<?php
+// Add menu for the plugin
+function gift_card_magic_add_menu()
+{
+    // Add main menu
+    $menu_slug = add_menu_page(
+        'Gift Card Magic',      // Page title
+        'Gift Card Magic',      // Menu name
+        'manage_options',       // Required capability to view the menu
+        'gift-card-magic',      // Menu slug
+        'gift_card_magic_page', // Callback function to display the menu page content
+        '',                     // Icon URL (if any)
+        20                       // Position of the menu
+    );
+
+    // Add submenus
+    add_submenu_page(
+        'gift-card-magic',      // Parent menu slug
+        'Dashboard',            // Submenu page title
+        'Dashboard',            // Submenu name
+        'manage_options',       // Required capability to view the submenu
+        'gift-card-dashboard',  // Submenu slug
+        'gift_card_magic_dashboard_page' // Callback function to display the submenu page content
+    );
+
+    // Add submenu (if needed)
+    add_submenu_page(
+        'gift-card-magic',      // Parent menu slug
+        'Settings',             // Submenu page title
+        'Settings',             // Submenu name
+        'manage_options',       // Required capability to view the submenu
+        'gift-card-settings',    // Submenu slug
+        'gift_card_magic_settings_page' // Callback function to display the submenu page content
+    );
+
+    // Remove the unwanted submenu head
+    global $submenu;
+    if (isset($submenu['gift-card-magic'])) {
+        unset($submenu['gift-card-magic'][0]);
+    }
+}
+
+// Call the menu adding function
+add_action('admin_menu', 'gift_card_magic_add_menu');
+
+// Register and enqueue the JavaScript file
+function gift_card_magic_enqueue_scripts()
+{
+    // Register the script
+    wp_register_script(
+        'gift-card-magic-backend', // Handle/slug for the script
+        plugin_dir_url(__FILE__) . 'assets/js/backend.js', // Path to the JavaScript file
+        array('jquery'), // Dependencies (if any)
+        '1.0', // Version number (optional)
+        true // Enqueue the script in the footer
+    );
+
+    // Enqueue the script
+    wp_enqueue_script('gift-card-magic-backend');
+}
+add_action('admin_enqueue_scripts', 'gift_card_magic_enqueue_scripts');
+
+
+// Callback function to display the submenu page content - Dashboard
+function gift_card_magic_dashboard_page()
+{
+    // Code to display the dashboard submenu page content
+}
+
+// Callback function to display the submenu page content - Settings
+function gift_card_magic_settings_page()
+{
+    // Get the plugin directory path
+    $plugin_dir = plugin_dir_path(__FILE__);
+
+    // Load the action files
+    require_once $plugin_dir . 'includes/backend/settings_file.php';
+    require_once $plugin_dir . 'includes/backend/frontend_file.php';
+    require_once $plugin_dir . 'includes/backend/payment_file.php';
+?>
+    <div class="wrap">
+        <h1>Settings</h1>
+        <h2 class="nav-tab-wrapper">
+            <a href="#" class="nav-tab nav-tab-active" data-tab="settings">Settings</a>
+            <a href="#" class="nav-tab" data-tab="frontend">Frontend</a>
+            <a href="#" class="nav-tab" data-tab="payment">Payment</a>
+        </h2>
+        <div id="tab-content">
+            <div id="tab-settings" class="tab-panel">
+                <?php do_action('gift_card_magic_settings_tab'); ?>
+            </div>
+            <div id="tab-frontend" class="tab-panel" style="display:none">
+                <?php do_action('gift_card_magic_frontend_tab'); ?>
+            </div>
+            <div id="tab-payment" class="tab-panel" style="display:none">
+                <?php do_action('gift_card_magic_payment_tab'); ?>
+            </div>
+        </div>
+    </div>
+<?php
+}
