@@ -28,31 +28,61 @@ $plugin_dir = plugin_dir_path(__FILE__);
 require_once $plugin_dir . 'admin.php';
 
 
+function gift_card_magic_register_styles() {
+    // Đăng ký file CSS
+    wp_enqueue_style('gift-card-magic-admin', plugin_dir_url(__FILE__) . 'assets/css/admin.css', array(), '1.0.0', 'all');
+}
+
+add_action('admin_enqueue_scripts', 'gift_card_magic_register_styles');
+
+
 
 // Callback function for plugin activation
 function gift_card_magic_activate()
 {
     global $wpdb;
-    $table_name = $wpdb->prefix . 'gcm_settings';
+    $table_settings = $wpdb->prefix . 'gcm_settings';
+    $table_templates = $wpdb->prefix . 'gcm_templates';
 
-    // Check if the table already exists in the database
-    if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
-        // Define the SQL statement for creating the table
-        $sql = "CREATE TABLE $table_name (
+    // Check if the table 'gcm_settings' already exists in the database
+    if ($wpdb->get_var("SHOW TABLES LIKE '$table_settings'") != $table_settings) {
+        // Define the SQL statement for creating the table 'gcm_settings'
+        $sql_settings = "CREATE TABLE $table_settings (
                 id INT(11) NOT NULL AUTO_INCREMENT,
                 column1 VARCHAR(255),
                 column2 VARCHAR(255),
+                column3 VARCHAR(255),
                 PRIMARY KEY (id)
             )";
 
         // Include the necessary WordPress file
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-        // Execute the SQL statement to create the table
-        dbDelta($sql);
+        // Execute the SQL statement to create the table 'gcm_settings'
+        dbDelta($sql_settings);
     }
+
+    // Check if the table 'gcm_templates' already exists in the database
+    if ($wpdb->get_var("SHOW TABLES LIKE '$table_templates'") != $table_templates) {
+        // Define the SQL statement for creating the table 'gcm_templates'
+        $sql_templates = "CREATE TABLE $table_templates (
+            id INT(11) NOT NULL AUTO_INCREMENT,
+            template_name VARCHAR(255),
+            template_content TEXT,
+            template_image INT(11),
+            PRIMARY KEY (id)
+        )";
+    
+        // Include the necessary WordPress file
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    
+        // Execute the SQL statement to create the table 'gcm_templates'
+        dbDelta($sql_templates);
+    }
+    
 }
 register_activation_hook(__FILE__, 'gift_card_magic_activate');
+
 
 
 
@@ -72,5 +102,59 @@ function gift_card_magic_custom_filter($content)
 
 // Call the plugin initialization function
 add_action('plugins_loaded', 'gift_card_magic_initialize');
+
+
+add_action('wp_ajax_delete_templates', 'gift_card_magic_delete_templates');
+
+function gift_card_magic_delete_templates() {
+    global $wpdb;
+    $table_templates = $wpdb->prefix . 'gcm_templates';
+
+    if (isset($_POST['template_ids'])) {
+        var_dump($_POST['template_ids']);
+        $template_ids = $_POST['template_ids'];
+
+        // Perform the necessary actions for the selected templates
+        foreach ($template_ids as $template_id) {
+            $wpdb->delete($table_templates, array('id' => $template_id));
+        }
+
+        // Return a success response
+        wp_send_json_success();
+    }
+
+    // Return an error response
+    wp_send_json_error();
+}
+
+
+
+// Hàm xử lý xóa template
+function delete_template()
+{
+    if (isset($_POST['template_id'])) {
+        $template_id = intval($_POST['template_id']);
+
+        // Xóa template từ bảng gcm_templates
+        global $wpdb;
+        $table_templates = $wpdb->prefix . 'gcm_templates';
+        $wpdb->delete($table_templates, array('id' => $template_id));
+
+        // Xóa cả ảnh template nếu có
+        $template_image = get_post_meta($template_id, 'template_image', true);
+        if ($template_image) {
+            wp_delete_attachment($template_image, true);
+        }
+
+        // Trả về kết quả thành công
+        wp_send_json_success();
+    } else {
+        // Trả về kết quả lỗi nếu không có template_id
+        wp_send_json_error();
+    }
+}
+add_action('wp_ajax_delete_template', 'delete_template');
+add_action('wp_ajax_nopriv_delete_template', 'delete_template');
+
 
 

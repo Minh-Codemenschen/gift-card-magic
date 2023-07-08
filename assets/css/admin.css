@@ -1,0 +1,7 @@
+#gcm_gift_card_items .gcm_actions .gcm_hidden {
+    display: none;
+}
+
+#gcm_gift_card_items .gcm_actions:hover .gcm_hidden {
+    display: inline-block;
+}
