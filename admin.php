@@ -113,17 +113,20 @@ function gift_card_magic_settings_page()
             <a href="#" class="nav-tab" data-tab="frontend">Frontend</a>
             <a href="#" class="nav-tab" data-tab="payment">Payment</a>
         </h2>
-        <div id="tab-content">
-            <div id="tab-settings" class="tab-panel">
-                <?php do_action('gift_card_magic_settings_tab'); ?>
+        <form action="" method="" id="setting-giftcardMagic">
+            <div id="tab-content">
+                <div id="tab-settings" class="tab-panel">
+                    <?php do_action('gift_card_magic_settings_tab'); ?>
+                </div>
+                <div id="tab-frontend" class="tab-panel" style="display:none">
+                    <?php do_action('gift_card_magic_frontend_tab'); ?>
+                </div>
+                <div id="tab-payment" class="tab-panel" style="display:none">
+                    <?php do_action('gift_card_magic_payment_tab'); ?>
+                </div>
             </div>
-            <div id="tab-frontend" class="tab-panel" style="display:none">
-                <?php do_action('gift_card_magic_frontend_tab'); ?>
-            </div>
-            <div id="tab-payment" class="tab-panel" style="display:none">
-                <?php do_action('gift_card_magic_payment_tab'); ?>
-            </div>
-        </div>
+            <p class="submit"><input type="submit" value="Save" id="save-giftcardMagic"></p>
+        </form>
     </div>
 <?php
 }
