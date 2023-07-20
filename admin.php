@@ -107,13 +107,13 @@ function gift_card_magic_settings_page()
     require_once $plugin_dir . 'includes/backend/payment_file.php';
 ?>
     <div class="wrap">
-        <h1>Settings</h1>
-        <h2 class="nav-tab-wrapper">
-            <a href="#" class="nav-tab nav-tab-active" data-tab="settings">Settings</a>
-            <a href="#" class="nav-tab" data-tab="frontend">Frontend</a>
-            <a href="#" class="nav-tab" data-tab="payment">Payment</a>
-        </h2>
-        <form action="" method="" id="setting-giftcardMagic">
+        <form action="" method="" id="setting-giftcardMagic" class="wrap-giftcardMagic">
+            <h1>Settings</h1>
+            <h2 class="nav-tab-wrapper">
+                <a href="#" class="nav-tab nav-tab-active" data-tab="settings">Settings</a>
+                <a href="#" class="nav-tab" data-tab="frontend">Frontend</a>
+                <a href="#" class="nav-tab" data-tab="payment">Payment</a>
+            </h2>
             <div id="tab-content">
                 <div id="tab-settings" class="tab-panel">
                     <?php do_action('gift_card_magic_settings_tab'); ?>
@@ -125,7 +125,9 @@ function gift_card_magic_settings_page()
                     <?php do_action('gift_card_magic_payment_tab'); ?>
                 </div>
             </div>
-            <p class="submit"><input type="submit" value="Save" id="save-giftcardMagic"></p>
+            <div class="sidebar-giftcardMagic">
+                <p class="submit"><input type="submit" value="Save" id="save-giftcardMagic"></p>
+            </div>
         </form>
     </div>
 <?php

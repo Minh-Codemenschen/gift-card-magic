@@ -109,8 +109,9 @@ input#save-giftcardMagic {
     padding: 10px 30px;
     background-color: #fff;
     border: 1px solid;
-    border-radius: 40px;
+    border-radius: 0;
     cursor: pointer;
+    width: 100%;
 }
 #wpfooter {
     position: static;
@@ -150,4 +151,98 @@ input#template-name {
     display: block;
     font-weight: bold;
     margin-bottom: 20px;
+}
+.wrap-giftcardMagic {
+    padding-right: 300px;
+}
+.sidebar-giftcardMagic {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    width: 300px;
+    height: 100vh;
+    background-color: #Fff;
+    padding: 50px 20px;
+    z-index: 2;
+}
+
+.box-giftcardMagic {
+    padding: 15px;
+    margin-top: 15px;
+    background-color: #Fff;
+}
+
+.wrap-giftcardMagic h1 {
+    margin: 40px 0;
+    font-size: 45px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.group-setting-giftcardMagic {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+.group-setting-giftcardMagic .text-label {
+    width: 150px;
+    display: block;
+}
+.group-setting-giftcardMagic .wrap-field {
+    width: 200px;
+    padding: 0 10px;
+}
+.group-setting-giftcardMagic .caption {
+    width: calc(100% - 350px);
+}
+.group-setting-giftcardMagic .field-giftcardMagic {
+    width: 100%;
+    padding: 3px 11px;
+    border-radius: 0;
+    border: 1px solid #000;
+    max-width: 100%;
+}
+.toggle-giftcardMagic {
+    display: block;
+}
+.toggle-giftcardMagic input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+.toggle-slider-giftcardMagic {
+    border-radius: 34px;
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    min-width: 50px;
+    height: 26px;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    transition: .4s;
+    border: 1px solid;
+    vertical-align: middle;
+    margin-right: 3px;
+}
+.toggle-slider-giftcardMagic:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: currentColor;
+    transition: .4s;
+    border-radius: 50%;
+}
+.toggle-giftcardMagic input:checked+.toggle-slider-giftcardMagic {
+    background-color: currentColor;
+}
+.toggle-giftcardMagic input:checked+.toggle-slider-giftcardMagic:before {
+    transform: translateX(24px);
+    background-color: #fff;
 }
