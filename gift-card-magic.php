@@ -43,23 +43,77 @@ function gift_card_magic_activate()
     global $wpdb;
     $table_settings = $wpdb->prefix . 'gcm_settings';
     $table_templates = $wpdb->prefix . 'gcm_templates';
+    $table_payment = $wpdb->prefix . 'gcm_settings_payment';
 
     // Check if the table 'gcm_settings' already exists in the database
     if ($wpdb->get_var("SHOW TABLES LIKE '$table_settings'") != $table_settings) {
         // Define the SQL statement for creating the table 'gcm_settings'
         $sql_settings = "CREATE TABLE $table_settings (
-                id INT(11) NOT NULL AUTO_INCREMENT,
-                column1 VARCHAR(255),
-                column2 VARCHAR(255),
-                column3 VARCHAR(255),
-                PRIMARY KEY (id)
-            )";
+            id INT(11) NOT NULL AUTO_INCREMENT,
+            show_name VARCHAR(255),
+            show_recipient_name VARCHAR(255),
+            show_voucher_value VARCHAR(255),
+            show_personal_message VARCHAR(255),
+            background_color VARCHAR(255),
+            text_color VARCHAR(255),
+            terms VARCHAR(255),
+            email_company VARCHAR(255),
+            link_company VARCHAR(255),
+            currency VARCHAR(255),
+            currency_position VARCHAR(255),
+            price_display_format VARCHAR(255),
+            PRIMARY KEY (id)
+        )";
+
 
         // Include the necessary WordPress file
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
         // Execute the SQL statement to create the table 'gcm_settings'
         dbDelta($sql_settings);
+        $wpdb->insert(
+            $table_settings,
+            array(
+                'show_name' => '1',
+                'show_recipient_name' => '1',
+                'show_voucher_value' => '1',
+                'show_personal_message' => '1',
+                'background_color' => '#FFFFFF',
+                'text_color' => '#000000',
+                'terms' => 'Terms and conditions apply.',
+                'email_company' => 'company@gmail.com',
+                'link_company' => 'example.com',
+                'currency' => 'USD',
+                'currency_position' => 'before',
+                'price_display_format' => '1,234.56',
+            )
+        );
+    }
+
+    // Check if the table 'gcm_settings' already exists in the database
+    if ($wpdb->get_var("SHOW TABLES LIKE '$table_payment'") != $table_payment) {
+        // Define the SQL statement for creating the table 'gcm_settings'
+        $sql_payment = "CREATE TABLE $table_payment (
+                id INT(11) NOT NULL AUTO_INCREMENT,
+                paypal_standar VARCHAR(255),
+                stripe VARCHAR(255),
+                PRIMARY KEY (id)
+            )";
+
+        // Include the necessary WordPress file
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+        // Execute the SQL statement to create the table 'gcm_payment'
+        dbDelta($sql_payment);
+
+        
+        $wpdb->insert(
+            $table_payment,
+            array(
+                'paypal_standar' => '0',
+                'stripe' => '0',
+            )
+        );
     }
 
     // Check if the table 'gcm_templates' already exists in the database
