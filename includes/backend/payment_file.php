@@ -8,6 +8,23 @@ function gift_card_magic_payment_tab_action() {
         <p>Here you can set up the payment options for your gift card plugin.</p>
     </div>
     <div class="box-giftcardMagic">
+        <h4>Payment config</h4>
+        <div class="group-setting-giftcardMagic">
+            <label class="text-label">PayPal Standar</label>
+            <label class="toggle-giftcardMagic ">
+                <input type="checkbox" class="toogle-slider-giftcardMagic" name="paypal_standar"> 
+                <span class="toggle-slider-giftcardMagic"></span> Safe and secure payments handle by PayPal
+            </label>
+        </div>
+        <div class="group-setting-giftcardMagic">
+            <label class="text-label">Stripe</label>
+            <label class="toggle-giftcardMagic">
+                <input type="checkbox" class="toogle-slider-giftcardMagic" name="stripe"> 
+                <span class="toggle-slider-giftcardMagic"></span> Connet your existing Stripe Account or create a new one to start accepting payments.
+            </label>
+        </div>
+    </div>
+    <div class="box-giftcardMagic" id="config-payment">
         <h4>Curreny config</h4>
         <div class="group-setting-giftcardMagic">
             <label class="text-label">Currency</label>
@@ -37,23 +54,6 @@ function gift_card_magic_payment_tab_action() {
                 </select>
             </div>
             <div class="caption-giftcardMagic">Select how to price displayed</div>
-        </div>
-    </div>
-    <div class="box-giftcardMagic">
-        <h4>Payment config</h4>
-        <div class="group-setting-giftcardMagic">
-            <label class="text-label">PayPal Standar</label>
-            <label class="toggle-giftcardMagic ">
-                <input type="checkbox" class="toogle-slider-giftcardMagic" name="paypal_standar"> 
-                <span class="toggle-slider-giftcardMagic"></span> Safe and secure payments handle by PayPal
-            </label>
-        </div>
-        <div class="group-setting-giftcardMagic">
-            <label class="text-label">Stripe</label>
-            <label class="toggle-giftcardMagic">
-                <input type="checkbox" class="toogle-slider-giftcardMagic" name="stripe"> 
-                <span class="toggle-slider-giftcardMagic"></span> Connet your existing Stripe Account or create a new one to start accepting payments.
-            </label>
         </div>
     </div>
     <?php

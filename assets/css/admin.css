@@ -200,16 +200,21 @@ input#template-name {
 .group-setting-giftcardMagic {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     margin-bottom: 10px;
     width: 100%;
 }
-.group-setting-giftcardMagic .text-label {
-    width: 150px;
+.group-setting-giftcardMagic .text-label { 
+    width: 330px;
     display: block;
+    font-weight: bold;
+}
+.group-setting-giftcardMagic .text-label span {
+    font-weight: normal;
 }
 .group-setting-giftcardMagic .wrap-field {
-    width: 200px;
-    padding: 0 10px;
+    width: 450px;
+    padding: 0 10px; 
 }
 .group-setting-giftcardMagic .caption {
     width: calc(100% - 350px);
@@ -268,4 +273,7 @@ input#template-name {
 }
 .group-setting-giftcardMagic input[type="color"] {
     width: 100px;
+}
+#setting-giftcardMagic h4 {
+    font-size: 16px;
 }
