@@ -277,3 +277,9 @@ input#template-name {
 #setting-giftcardMagic h4 {
     font-size: 16px;
 }
+label.toggle-giftcardMagic {
+    padding: 0 10px;
+}
+.box-giftcardMagic.hide {
+    display: none;
+}

@@ -13,4 +13,17 @@ jQuery(document).ready(function ($) {
         $(this).addClass('nav-tab-active');
         $('#tab-' + tab).show();
     });
+    $(".toogle-slider-giftcardMagic").click(function() {
+        var name = '#'+$(this).attr('name');
+        if($(name).length) {
+            // Check if the checkbox is checked
+            if ($(this).is(":checked")) {
+              // If checked, show the associated div
+              $(name).show();
+            } else {
+              // If not checked, hide the div
+              $(name).hide();
+            }
+        }
+      });
 });
