@@ -5,7 +5,7 @@ function gift_card_magic_settings_tab_action() {
     ?>
     <div class="box-giftcardMagic">
         <div class="top-giftcardMagic">
-            <h3>Settings</h3>
+            <h2>Settings</h2>
             <p>Here you can configure the settings for your gift card plugin.</p>
         </div>
         <div class="inner-box-giftcardMagic">

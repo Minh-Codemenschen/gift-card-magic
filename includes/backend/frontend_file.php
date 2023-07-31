@@ -5,7 +5,7 @@ function gift_card_magic_frontend_tab_action() {
     ?>
     <div class="box-giftcardMagic">
         <div class="top-giftcardMagic">
-        <h3>Frontend Content</h3>
+        <h2>Frontend Content</h2>
         <p>Here you can customize the frontend appearance and behavior of the gift card plugin.</p>
         </div>
         <div class="inner-box-giftcardMagic">
