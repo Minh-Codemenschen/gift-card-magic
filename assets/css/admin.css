@@ -208,6 +208,7 @@ input#template-name {
     width: 330px;
     display: block;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 .group-setting-giftcardMagic .text-label span {
     font-weight: normal;
@@ -225,6 +226,7 @@ input#template-name {
     border-radius: 0;
     border: 1px solid #000;
     max-width: 100%;
+    margin-bottom: 10px;
 }
 .toggle-giftcardMagic {
     display: block;
@@ -282,4 +284,23 @@ label.toggle-giftcardMagic {
 }
 .box-giftcardMagic.hide {
     display: none;
+}
+.box-giftcardMagic h3 {
+    font-size: 2em;
+}
+#tab-frontend .group-setting-giftcardMagic .text-label {
+    font-weight: normal;
+}
+.field-file-giftcardMagic .field-giftcardMagic {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+}
+.field-file-giftcardMagic .text-file {
+    border: 1px solid #000;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-transform: capitalize;
+    background-color: #fff;
 }

@@ -8,6 +8,8 @@ function gift_card_magic_settings_tab_action() {
             <h2>Settings</h2>
             <p>Here you can configure the settings for your gift card plugin.</p>
         </div>
+    </div>
+    <div class="box-giftcardMagic">
         <div class="inner-box-giftcardMagic">
             <div class="group-setting-giftcardMagic">
                 <label class="text-label">Minimum Voucher Value<br>
@@ -23,16 +25,16 @@ function gift_card_magic_settings_tab_action() {
                 </div>
             </div>
             <div class="group-setting-giftcardMagic">
+                <label class="text-label">Expiry date format</label>
+                <div class="wrap-field">
+                    <input type="text" class="field-giftcardMagic" name="expiry_date_format" value="d.m.Y">
+                </div>
+            </div>
+            <div class="group-setting-giftcardMagic">
                 <label class="text-label">Voucher Expiry Value<br>
                 <span>Example: (Days: 60, Fixed Date: 21.02.2021)</span></label>
                 <div class="wrap-field">
                     <input type="number" class="field-giftcardMagic" name="voucher_expiry_value" value="60">
-                </div>
-            </div>
-            <div class="group-setting-giftcardMagic">
-                <label class="text-label">Expiry date format</label>
-                <div class="wrap-field">
-                    <input type="text" class="field-giftcardMagic" name="expiry_date_format" value="d.m.Y">
                 </div>
             </div>
             <div class="group-setting-giftcardMagic">
@@ -61,6 +63,12 @@ function gift_card_magic_settings_tab_action() {
                         <option value="0">Disable</option>
                         <option value="1">Enable</option>
                     </select>
+                </div>
+            </div>
+            <div class="group-setting-giftcardMagic">
+                <label class="text-label">Add your custom loader url</label>
+                <div class="wrap-field">
+                    <input type="text" class="field-giftcardMagic" name="custom_loader_url" value="">
                 </div>
             </div>
         </div>

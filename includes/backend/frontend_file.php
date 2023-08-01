@@ -5,9 +5,16 @@ function gift_card_magic_frontend_tab_action() {
     ?>
     <div class="box-giftcardMagic">
         <div class="top-giftcardMagic">
+<<<<<<< HEAD
+            <h3>Frontend Content</h3>
+            <p>Here you can customize the frontend appearance and behavior of the gift card plugin.</p>
+=======
         <h2>Frontend Content</h2>
         <p>Here you can customize the frontend appearance and behavior of the gift card plugin.</p>
+>>>>>>> dee95152338bf391a6b7bba9d1eae544e4c30208
         </div>
+    </div>
+    <div class="box-giftcardMagic">
         <div class="inner-box-giftcardMagic">
             <div class="table-setting-giftcardMagic">
                 <div class="wrap-item-giftcardMagic" style="background-color:#fff">
@@ -90,7 +97,18 @@ function gift_card_magic_frontend_tab_action() {
                     <label class="text-label">Text Color</label>
                     <input type="color" name="text_color" value="#000000">
                 </div>                
-                <h3>Information</h3>
+                <h3>Information</h3>                
+                <div class="group-setting-giftcardMagic">
+                    <label class="text-label">Company Logo (Required)</label>
+                    <label class="field-file-giftcardMagic">
+                        <input type="file" class="field-giftcardMagic" name="company_logo" value="">
+                        <span class="text-file">Upload Logo</span>
+                    </label>
+                </div>
+                <div class="group-setting-giftcardMagic">
+                    <label class="text-label">Company Name (Required)</label>
+                    <input type="text" class="field-giftcardMagic" name="company_name" value="">
+                </div>
                 <div class="group-setting-giftcardMagic">
                     <label class="text-label">Terms Content</label>
                     <input type="text" class="field-giftcardMagic" name="terms" value="Terms and conditions apply." maxlength="200">
