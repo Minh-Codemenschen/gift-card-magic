@@ -75,6 +75,22 @@ jQuery(document).ready(function ($) {
       }
     }
   }
+  $('#upload-logo').on('click', function(e) {
+    e.preventDefault();
+    var imageUploader = wp.media({
+        title: 'Select Logo',
+        button: {
+            text: 'Set Logo Image'
+        },
+        multiple: false // Set to true for multiple image selection
+    });
 
-  
+    imageUploader.on('select', function() {
+        var attachment = imageUploader.state().get('selection').first().toJSON();
+        $('#image_url').attr('src',attachment.url);
+        $('#upload-logo').val(attachment.url);
+    });
+
+    imageUploader.open();
+  });  
 });

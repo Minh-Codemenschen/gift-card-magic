@@ -5,13 +5,8 @@ function gift_card_magic_frontend_tab_action() {
     ?>
     <div class="box-giftcardMagic">
         <div class="top-giftcardMagic">
-<<<<<<< HEAD
-            <h3>Frontend Content</h3>
+            <h2>Frontend Content</h2>
             <p>Here you can customize the frontend appearance and behavior of the gift card plugin.</p>
-=======
-        <h2>Frontend Content</h2>
-        <p>Here you can customize the frontend appearance and behavior of the gift card plugin.</p>
->>>>>>> dee95152338bf391a6b7bba9d1eae544e4c30208
         </div>
     </div>
     <div class="box-giftcardMagic">
@@ -101,8 +96,9 @@ function gift_card_magic_frontend_tab_action() {
                 <div class="group-setting-giftcardMagic">
                     <label class="text-label">Company Logo (Required)</label>
                     <label class="field-file-giftcardMagic">
-                        <input type="file" class="field-giftcardMagic" name="company_logo" value="">
+                        <input type="text" class="field-giftcardMagic" name="company_logo" value="" id="upload-logo">
                         <span class="text-file">Upload Logo</span>
+                        <img src="#" id="image_url">
                     </label>
                 </div>
                 <div class="group-setting-giftcardMagic">

@@ -296,6 +296,8 @@ label.toggle-giftcardMagic {
     visibility: hidden;
     position: absolute;
     top: 0;
+    width: 0;
+    height: 0;
 }
 .field-file-giftcardMagic .text-file {
     border: 1px solid #000;
@@ -303,4 +305,10 @@ label.toggle-giftcardMagic {
     border-radius: 30px;
     text-transform: capitalize;
     background-color: #fff;
+}
+img#image_url {
+    width: 100px;
+    height: auto;
+    vertical-align: middle;
+    margin-left: 10px;
 }

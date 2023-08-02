@@ -260,3 +260,10 @@ function gift_card_magic_remove_from_main_menu()
 }
 
 add_action('admin_menu', 'gift_card_magic_remove_from_main_menu');
+
+function enqueue_media_scripts() {
+    // Enqueue media uploader scripts
+    wp_enqueue_media();
+}
+add_action('admin_enqueue_scripts', 'enqueue_media_scripts');
+
