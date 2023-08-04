@@ -2,6 +2,31 @@
 
 // Add action for gift_card_magic_settings_tab
 function gift_card_magic_settings_tab_action() {
+    global $wpdb;
+    $table_settings = $wpdb->prefix . 'gcm_settings'; 
+    $sql_select_settings = "SELECT * FROM $table_settings";
+    $results = $wpdb->get_results($sql_select_settings);
+    $minimum_voucher_value = 0;
+    $maximum_voucher_value = 0;
+    $voucher_expiry_value = 0;
+    $expiry_date_format = 0;
+    $hide_voucher_first_step = 0;
+    $hide_price_from_voucher = 0;
+    $voucher_preview_button = 0;
+    if ($results) {
+        $result = $results[0];
+        $id = $result->id;
+        $minimum_voucher_value = $result->minimum_voucher_value;
+        $maximum_voucher_value = $result->maximum_voucher_value;
+        $voucher_expiry_value = $result->voucher_expiry_value;
+        $expiry_date_format = $result->expiry_date_format;
+        $hide_voucher_first_step = $result->hide_voucher_first_step;
+        $hide_price_from_voucher = $result->hide_price_from_voucher;
+        $voucher_preview_button = $result->voucher_preview_button;
+    } else {
+        echo "No results found.";
+    }
+
     ?>
     <div class="box-giftcardMagic">
         <div class="top-giftcardMagic">
@@ -15,26 +40,26 @@ function gift_card_magic_settings_tab_action() {
                 <label class="text-label">Minimum Voucher Value<br>
                 <span>Leave 0 if no minimum value</span></label>
                 <div class="wrap-field">
-                    <input type="number" class="field-giftcardMagic" name="minimum_voucher_value" value="0">
+                    <input type="number" class="field-giftcardMagic" name="minimum_voucher_value" value="<?php echo $minimum_voucher_value; ?>" required>
                 </div>
             </div>
             <div class="group-setting-giftcardMagic">
                 <label class="text-label">Maximum Voucher Value</label>
                 <div class="wrap-field">
-                    <input type="number" class="field-giftcardMagic" name="maximum_voucher_value" value="100">
+                    <input type="number" class="field-giftcardMagic" name="maximum_voucher_value" value="<?php echo $maximum_voucher_value; ?>" required>
                 </div>
             </div>
             <div class="group-setting-giftcardMagic">
                 <label class="text-label">Expiry date format</label>
                 <div class="wrap-field">
-                    <input type="text" class="field-giftcardMagic" name="expiry_date_format" value="d.m.Y">
+                    <input type="text" class="field-giftcardMagic" name="expiry_date_format" value="<?php echo $expiry_date_format; ?>" required>
                 </div>
             </div>
             <div class="group-setting-giftcardMagic">
                 <label class="text-label">Voucher Expiry Value<br>
                 <span>Example: (Days: 60, Fixed Date: 21.02.2021)</span></label>
                 <div class="wrap-field">
-                    <input type="number" class="field-giftcardMagic" name="voucher_expiry_value" value="60">
+                    <input type="number" class="field-giftcardMagic" name="voucher_expiry_value" value="<?php echo $voucher_expiry_value; ?>">
                 </div>
             </div>
             <div class="group-setting-giftcardMagic">

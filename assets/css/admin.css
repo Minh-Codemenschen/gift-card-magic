@@ -306,9 +306,16 @@ label.toggle-giftcardMagic {
     text-transform: capitalize;
     background-color: #fff;
 }
-img#image_url {
-    width: 100px;
-    height: auto;
-    vertical-align: middle;
+.preview-logo {
+    display: none;
     margin-left: 10px;
+    width: 100px;
+    vertical-align: middle;
+}
+.preview-logo.show {
+    display: inline-block;
+}
+img#image_url {
+    width: 100%;
+    height: auto;
 }

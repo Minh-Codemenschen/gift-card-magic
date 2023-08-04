@@ -98,7 +98,9 @@ function gift_card_magic_frontend_tab_action() {
                     <label class="field-file-giftcardMagic">
                         <input type="text" class="field-giftcardMagic" name="company_logo" value="" id="upload-logo">
                         <span class="text-file">Upload Logo</span>
-                        <img src="#" id="image_url">
+                        <div class="preview-logo">
+                            <img src="#" id="image_url">
+                        </div>
                     </label>
                 </div>
                 <div class="group-setting-giftcardMagic">

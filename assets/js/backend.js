@@ -89,6 +89,7 @@ jQuery(document).ready(function ($) {
         var attachment = imageUploader.state().get('selection').first().toJSON();
         $('#image_url').attr('src',attachment.url);
         $('#upload-logo').val(attachment.url);
+        $('.preview-logo').addClass('show');
     });
 
     imageUploader.open();
