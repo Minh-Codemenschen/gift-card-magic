@@ -42,13 +42,13 @@ function gift_card_magic_activate()
 {
     global $wpdb;
     $table_settings = $wpdb->prefix . 'gcm_settings';
-    $table_settings_frontend = $wpdb->prefix . 'gcm_c';
+    $table_settings_frontend = $wpdb->prefix . 'gcm_settings_frontend';
     $table_templates = $wpdb->prefix . 'gcm_templates';
     $table_payment = $wpdb->prefix . 'gcm_settings_payment';
 
-    // Check if the table 'gcm_settings_frontend' already exists in the database
+    // Check if the table 'gcm_settings' already exists in the database
     if ($wpdb->get_var("SHOW TABLES LIKE '$table_settings'") != $table_settings) {
-        // Define the SQL statement for creating the table 'gcm_settings_frontend'
+        // Define the SQL statement for creating the table 'gcm_settings'
         $sql_settings = "CREATE TABLE $table_settings (
             id INT(11) NOT NULL AUTO_INCREMENT,
             minimum_voucher_value INT(11),
@@ -64,7 +64,7 @@ function gift_card_magic_activate()
         // Include the necessary WordPress file
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-        // Execute the SQL statement to create the table 'gcm_settings_frontend'
+        // Execute the SQL statement to create the table 'gcm_settings'
         dbDelta($sql_settings);
         $wpdb->insert(
             $table_settings,
