@@ -42,7 +42,7 @@ function gift_card_magic_activate()
 {
     global $wpdb;
     $table_settings = $wpdb->prefix . 'gcm_settings';
-    $table_settings_frontend = $wpdb->prefix . 'gcm_settings_frontend';
+    $table_settings_frontend = $wpdb->prefix . 'gcm_c';
     $table_templates = $wpdb->prefix . 'gcm_templates';
     $table_payment = $wpdb->prefix . 'gcm_settings_payment';
 
@@ -58,6 +58,7 @@ function gift_card_magic_activate()
             hide_voucher_first_step INT(1),
             hide_price_from_voucher INT(1),
             voucher_preview_button INT(1),
+            custom_loader_url LONGTEXT,
             PRIMARY KEY (id)
         )";
         // Include the necessary WordPress file
@@ -75,6 +76,7 @@ function gift_card_magic_activate()
                 'hide_voucher_first_step' => 0,
                 'hide_price_from_voucher' => 0,
                 'voucher_preview_button' => 0,
+                'custom_loader_url' => '',
             )
         );
     }
@@ -96,6 +98,8 @@ function gift_card_magic_activate()
             currency VARCHAR(255),
             currency_position VARCHAR(255),
             price_display_format VARCHAR(255),
+            company_logo LONGTEXT,
+            company_name VARCHAR(255),
             PRIMARY KEY (id)
         )";
 
@@ -117,9 +121,8 @@ function gift_card_magic_activate()
                 'terms' => 'Terms and conditions apply.',
                 'email_company' => 'company@gmail.com',
                 'link_company' => 'example.com',
-                'currency' => 'USD',
-                'currency_position' => 'before',
-                'price_display_format' => '1,234.56',
+                'company_logo' => '',
+                'company_name' => '',
             )
         );
     }

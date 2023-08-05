@@ -93,5 +93,24 @@ jQuery(document).ready(function ($) {
     });
 
     imageUploader.open();
+  });    
+  $('#upload-bg-image').on('click', function(e) {
+    e.preventDefault();
+    var imageUploader = wp.media({
+        title: 'Select Image',
+        button: {
+            text: 'Set Image'
+        },
+        multiple: false // Set to true for multiple image selection
+    });
+
+    imageUploader.on('select', function() {
+        var attachment = imageUploader.state().get('selection').first().toJSON();
+        $('#image_bg').attr('src',attachment.url);
+        $('#upload-bg-image').val(attachment.url);
+        $('.preview-logo').addClass('show');
+    });
+
+    imageUploader.open();
   });  
 });

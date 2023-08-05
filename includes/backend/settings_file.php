@@ -12,10 +12,10 @@ function gift_card_magic_settings_tab_action() {
     $expiry_date_format = 0;
     $hide_voucher_first_step = 0;
     $hide_price_from_voucher = 0;
-    $voucher_preview_button = 0;
+    $voucher_preview_button = '';
+    $custom_loader_url = '';
     if ($results) {
         $result = $results[0];
-        $id = $result->id;
         $minimum_voucher_value = $result->minimum_voucher_value;
         $maximum_voucher_value = $result->maximum_voucher_value;
         $voucher_expiry_value = $result->voucher_expiry_value;
@@ -23,10 +23,8 @@ function gift_card_magic_settings_tab_action() {
         $hide_voucher_first_step = $result->hide_voucher_first_step;
         $hide_price_from_voucher = $result->hide_price_from_voucher;
         $voucher_preview_button = $result->voucher_preview_button;
-    } else {
-        echo "No results found.";
-    }
-
+        $custom_loader_url = $result->custom_loader_url;
+    } 
     ?>
     <div class="box-giftcardMagic">
         <div class="top-giftcardMagic">
@@ -67,8 +65,8 @@ function gift_card_magic_settings_tab_action() {
                 <span>This will hide the first "Select Template" step</span></label>
                 <div class="wrap-field">
                     <select class="select-setting-giftcardMagic field-giftcardMagic" name="hide_voucher_first_step">
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
+                        <option value="0" <?php echo $hide_voucher_first_step == 0 ? 'selected' : ''; ?>>No</option>
+                        <option value="1" <?php echo $hide_voucher_first_step == 1 ? 'selected' : ''; ?>>Yes</option>
                     </select>
                 </div>
             </div>
@@ -76,8 +74,8 @@ function gift_card_magic_settings_tab_action() {
                 <label class="text-label">Hide Price from voucher</label>
                 <div class="wrap-field">
                     <select class="select-setting-giftcardMagic field-giftcardMagic" name="hide_price_from_voucher">
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
+                        <option value="0" <?php echo $hide_price_from_voucher == 0 ? 'selected' : ''; ?>>No</option>
+                        <option value="1" <?php echo $hide_price_from_voucher == 1 ? 'selected' : ''; ?>>Yes</option>
                     </select>
                 </div>
             </div>
@@ -85,15 +83,15 @@ function gift_card_magic_settings_tab_action() {
                 <label class="text-label">Voucher preview Button</label>
                 <div class="wrap-field">
                     <select class="select-setting-giftcardMagic field-giftcardMagic" name="voucher_preview_button">
-                        <option value="0">Disable</option>
-                        <option value="1">Enable</option>
+                        <option value="0" <?php echo $voucher_preview_button == 0 ? 'selected' : ''; ?>>Disable</option>
+                        <option value="1" <?php echo $voucher_preview_button == 1 ? 'selected' : ''; ?>>Enable</option>
                     </select>
                 </div>
             </div>
             <div class="group-setting-giftcardMagic">
                 <label class="text-label">Add your custom loader url</label>
                 <div class="wrap-field">
-                    <input type="text" class="field-giftcardMagic" name="custom_loader_url" value="">
+                    <input type="text" class="field-giftcardMagic" name="custom_loader_url" value="<?php echo $custom_loader_url; ?>" max="250">
                 </div>
             </div>
         </div>
