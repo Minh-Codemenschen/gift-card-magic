@@ -319,3 +319,14 @@ img#image_url {
     width: 100%;
     height: auto;
 }
+.post-type-gift_card_magic #postdivrich{
+    display: none;
+}
+.post-type-gift_card_magic .wrap-gift-card-details label{
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+}
+.post-type-gift_card_magic .wrap-gift-card-details input{
+    width: 100%;
+}
