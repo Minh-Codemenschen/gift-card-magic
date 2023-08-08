@@ -43,7 +43,6 @@ function gift_card_magic_activate()
     global $wpdb;
     $table_settings = $wpdb->prefix . 'gcm_settings';
     $table_settings_frontend = $wpdb->prefix . 'gcm_settings_frontend';
-    $table_templates = $wpdb->prefix . 'gcm_templates';
     $table_payment = $wpdb->prefix . 'gcm_settings_payment';
 
     // Check if the table 'gcm_settings' already exists in the database
@@ -173,24 +172,6 @@ function gift_card_magic_activate()
             )
         );
     }
-
-    // Check if the table 'gcm_templates' already exists in the database
-    if ($wpdb->get_var("SHOW TABLES LIKE '$table_templates'") != $table_templates) {
-        // Define the SQL statement for creating the table 'gcm_templates'
-        $sql_templates = "CREATE TABLE $table_templates (
-            id INT(11) NOT NULL AUTO_INCREMENT,
-            template_name VARCHAR(255),
-            template_content TEXT,
-            template_image INT(11),
-            PRIMARY KEY (id)
-        )";
-    
-        // Include the necessary WordPress file
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    
-        // Execute the SQL statement to create the table 'gcm_templates'
-        dbDelta($sql_templates);
-    }
     
 }
 register_activation_hook(__FILE__, 'gift_card_magic_activate');
@@ -216,57 +197,6 @@ function gift_card_magic_custom_filter($content)
 add_action('plugins_loaded', 'gift_card_magic_initialize');
 
 
-add_action('wp_ajax_delete_templates', 'gift_card_magic_delete_templates');
-
-function gift_card_magic_delete_templates() {
-    global $wpdb;
-    $table_templates = $wpdb->prefix . 'gcm_templates';
-
-    if (isset($_POST['template_ids'])) {
-        var_dump($_POST['template_ids']);
-        $template_ids = $_POST['template_ids'];
-
-        // Perform the necessary actions for the selected templates
-        foreach ($template_ids as $template_id) {
-            $wpdb->delete($table_templates, array('id' => $template_id));
-        }
-
-        // Return a success response
-        wp_send_json_success();
-    }
-
-    // Return an error response
-    wp_send_json_error();
-}
-
-
-
-// Hàm xử lý xóa template
-function delete_template()
-{
-    if (isset($_POST['template_id'])) {
-        $template_id = intval($_POST['template_id']);
-
-        // Xóa template từ bảng gcm_templates
-        global $wpdb;
-        $table_templates = $wpdb->prefix . 'gcm_templates';
-        $wpdb->delete($table_templates, array('id' => $template_id));
-
-        // Xóa cả ảnh template nếu có
-        $template_image = get_post_meta($template_id, 'template_image', true);
-        if ($template_image) {
-            wp_delete_attachment($template_image, true);
-        }
-
-        // Trả về kết quả thành công
-        wp_send_json_success();
-    } else {
-        // Trả về kết quả lỗi nếu không có template_id
-        wp_send_json_error();
-    }
-}
-add_action('wp_ajax_delete_template', 'delete_template');
-add_action('wp_ajax_nopriv_delete_template', 'delete_template');
 
 
 
