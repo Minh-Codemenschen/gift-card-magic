@@ -40,42 +40,44 @@ function gift_card_magic_frontend_tab_action() {
     <div class="box-giftcardMagic">
         <div class="inner-box-giftcardMagic">
             <div class="table-setting-giftcardMagic">
-                <div class="wrap-item-giftcardMagic" style="background-color:<?php echo $background_color; ?>">
+                <div class="wrap-item-giftcardMagic" style="background-color:<?php echo $background_color; ?>;">
                     <div class="image-giftcardMagic">
                         <img src="<?php echo plugins_url( 'gift-card-magic/assets/images/demo.jpg'); ?>">
                     </div>
                     <div class="content-giftcardMagic">
-                        <div class="group-giftcardMagic">
-                            <label style="color:#000;">Your Name </label>
+                        <div style="color:<?php echo $text_color; ?>" <?php echo $show_name == 1 ? '' : 'style="display:none;"'; ?> class="group-giftcardMagic">
+                            <label">Your Name </label>
                             <input type="text" value="" class="input-giftcardMagic" name="your_name">
                         </div>
-                        <div class="group-giftcardMagic">
-                            <label style="color:#000;">Recipient Name</label>
+                        <div style="color:<?php echo $text_color; ?>" <?php echo $show_recipient_name == 1 ? '' : 'style="display:none;"'; ?> class="group-giftcardMagic">
+                            <label">Recipient Name</label>
                             <input type="text" name="from_name" class="input-giftcardMagic">
                         </div>
-                        <div class="group-giftcardMagic full-width-giftcardMagic">
-                            <label style="color:#000;">Voucher Value</label>
+                        <div style="color:<?php echo $text_color; ?>" <?php echo $show_voucher_value == 1 ? '' : 'style="display:none;"'; ?> class="group-giftcardMagic full-width-giftcardMagic">
+                            <label">Voucher Value</label>
                             <div class="wrap-input-giftcardMagic">
                                 <span class="currencySymbol"> $ </span>
                                 <input type="text" name="voucher_value" class="input-giftcardMagic">
                             </div>
                         </div>
-                        <div class="group-giftcardMagic full-width-giftcardMagic">
-                            <label style="color:#000;">Personal Message</label>
+                        <div style="color:<?php echo $text_color; ?>" <?php echo $show_personal_message == 1 ? '' : 'style="display:none;"'; ?> class="group-giftcardMagic full-width-giftcardMagic">
+                            <label">Personal Message</label>
                             <textarea name="message" class="input-giftcardMagic"></textarea>
                         </div>
-                        <div class="group-giftcardMagic">
-                            <label style="color:#000;">Date of Expiry</label>
+                        <div style="color:<?php echo $text_color; ?>" class="group-giftcardMagic">
+                            <label">Date of Expiry</label>
                             <input type="text" name="expiryCard" class="input-giftcardMagic" value="16.09.2023">
                         </div>
-                        <div class="group-giftcardMagic">
-                            <label style="color:#000;">Coupon Code</label>
+                        <div style="color:<?php echo $text_color; ?>" class="group-giftcardMagic">
+                            <label">Coupon Code</label>
                             <input type="text" name="coupon_code" class="input-giftcardMagic" value="6234256841004311">
                         </div>
                         <div class="info-giftcardMagic">
-                            <a href="company@gmail.com">company@gmail.com</a> | <a href="mailto:example.com">example.com</a>
+                            <a href="<?php echo $email_company; ?>">
+                            <?php echo $email_company; ?></a> | <a href="mailto:<?php echo $link_company; ?>"><?php echo $link_company; ?>
+                        </a>
                         </div>
-                        <div class="terms-giftcardMagic">Terms and conditions apply..</div>
+                        <div class="terms-giftcardMagic"><?php echo $terms; ?></div>
                     </div>
                 </div>
             </div>
@@ -115,47 +117,37 @@ function gift_card_magic_frontend_tab_action() {
                 <div class="group-setting-giftcardMagic">
                     <label class="text-label">Background Color</label>
                     <input type="color" name="background_color" value="<?php echo $background_color; ?>">
-                </div>             
-                <div class="group-setting-giftcardMagic">
-                    <label class="text-label">Background Image</label>
-                    <label class="field-file-giftcardMagic">
-                        <input type="text" class="field-giftcardMagic" name="background_image" value="" id="upload-bg-image">
-                        <span class="text-file">Upload Image</span>
-                        <div class="preview-logo">
-                            <img src="#" id="image_bg">
-                        </div>
-                    </label>
-                </div>
+                </div>   
                 <div class="group-setting-giftcardMagic">
                     <label class="text-label">Text Color</label>
-                    <input type="color" name="text_color" value="#000000">
+                    <input type="color" name="text_color" value="<?php echo $text_color; ?>">
                 </div>                
                 <h3>Information</h3>                
                 <div class="group-setting-giftcardMagic">
                     <label class="text-label">Company Logo (Required)</label>
                     <label class="field-file-giftcardMagic">
-                        <input type="text" class="field-giftcardMagic" name="company_logo" value="" id="upload-logo">
+                        <input type="text" class="field-giftcardMagic" name="company_logo" value="<?php echo $company_logo; ?>" id="upload-logo">
                         <span class="text-file">Upload Logo</span>
-                        <div class="preview-logo">
+                        <div class="preview-logo <?php echo $company_logo == '' ? '' : 'show'; ?>">
                             <img src="#" id="image_url">
                         </div>
                     </label>
                 </div>
                 <div class="group-setting-giftcardMagic">
                     <label class="text-label">Company Name (Required)</label>
-                    <input type="text" class="field-giftcardMagic" name="company_name" value="">
+                    <input type="text" class="field-giftcardMagic" name="company_name" value="<?php echo $company_name; ?>">
                 </div>
                 <div class="group-setting-giftcardMagic">
                     <label class="text-label">Terms Content</label>
-                    <input type="text" class="field-giftcardMagic" name="terms" value="Terms and conditions apply." maxlength="200">
+                    <input type="text" class="field-giftcardMagic" name="terms" value="<?php echo $terms; ?>" maxlength="200">
                 </div>
                 <div class="group-setting-giftcardMagic">
                     <label class="text-label">Email company</label>
-                    <input type="text" class="field-giftcardMagic" name="email_company" value="company@gmail.com">
+                    <input type="text" class="field-giftcardMagic" name="email_company" value="<?php echo $email_company; ?>">
                 </div>
                 <div class="group-setting-giftcardMagic">
                     <label class="text-label">Link company</label>
-                    <input type="text" class="field-giftcardMagic" name="link_company" value="example.com">
+                    <input type="text" class="field-giftcardMagic" name="link_company" value="<?php echo $link_company; ?>">
                 </div>
             </div>
 
