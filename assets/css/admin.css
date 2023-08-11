@@ -126,11 +126,12 @@ textarea.input-giftcardMagic {
 input#save-giftcardMagic {
     font-size: 18px;
     padding: 10px 30px;
-    background-color: #fff;
-    border: 1px solid;
+    background-color: #0161f1;
+    border: 1px solid #fff;
     border-radius: 0;
     cursor: pointer;
     width: 100%;
+    color: #fff;
 }
 #wpfooter {
     position: static;
