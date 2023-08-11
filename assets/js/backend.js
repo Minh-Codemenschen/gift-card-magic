@@ -93,24 +93,27 @@ jQuery(document).ready(function ($) {
     });
 
     imageUploader.open();
-  });    
-  $('#upload-bg-image').on('click', function(e) {
-    e.preventDefault();
-    var imageUploader = wp.media({
-        title: 'Select Image',
-        button: {
-            text: 'Set Image'
-        },
-        multiple: false // Set to true for multiple image selection
-    });
-
-    imageUploader.on('select', function() {
-        var attachment = imageUploader.state().get('selection').first().toJSON();
-        $('#image_bg').attr('src',attachment.url);
-        $('#upload-bg-image').val(attachment.url);
-        $('.preview-logo').addClass('show');
-    });
-
-    imageUploader.open();
   });  
+  var baseUrl = pluginData.siteUrl;
+  var ajaxurl = pluginData.siteUrl+ '/wp-admin/admin-ajax.php';
+  $('#setting-giftcardMagic').submit(function(e) {
+    e.preventDefault();
+    $('.display-loading-giftcardMagic').show();
+    var formData = $("#setting-giftcardMagic").serialize();
+    $.ajax({
+      type: 'POST',
+      url: ajaxurl, 
+      data: {
+        action: 'save_giftcard_settings',
+        form_data: formData
+      },
+      success: function(response) {        
+        setTimeout(function(){
+          $('.display-loading-giftcardMagic').hide();
+          setTimeout(function(){location.reload();},2000);
+        },2000);        
+      }
+    });
+});
+
 });
