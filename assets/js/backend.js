@@ -75,45 +75,61 @@ jQuery(document).ready(function ($) {
       }
     }
   }
-  $('#upload-logo').on('click', function(e) {
+  $('#upload-logo').on('click', function (e) {
     e.preventDefault();
     var imageUploader = wp.media({
-        title: 'Select Logo',
-        button: {
-            text: 'Set Logo Image'
-        },
-        multiple: false // Set to true for multiple image selection
+      title: 'Select Logo',
+      button: {
+        text: 'Set Logo Image'
+      },
+      multiple: false // Set to true for multiple image selection
     });
 
-    imageUploader.on('select', function() {
-        var attachment = imageUploader.state().get('selection').first().toJSON();
-        $('#image_url').attr('src',attachment.url);
-        $('#upload-logo').val(attachment.url);
-        $('.preview-logo').addClass('show');
+    imageUploader.on('select', function () {
+      var attachment = imageUploader.state().get('selection').first().toJSON();
+      $('#image_url').attr('src', attachment.url);
+      $('#upload-logo').val(attachment.url);
+      $('.preview-logo').addClass('show');
     });
 
     imageUploader.open();
-  });  
-  var baseUrl = pluginData.siteUrl;
-  var ajaxurl = pluginData.siteUrl+ '/wp-admin/admin-ajax.php';
-  $('#setting-giftcardMagic').submit(function(e) {
+  });
+  $('#upload-bg-image').on('click', function (e) {
     e.preventDefault();
-    $('.display-loading-giftcardMagic').show();
-    var formData = $("#setting-giftcardMagic").serialize();
-    $.ajax({
-      type: 'POST',
-      url: ajaxurl, 
-      data: {
-        action: 'save_giftcard_settings',
-        form_data: formData
+    var imageUploader = wp.media({
+      title: 'Select Image',
+      button: {
+        text: 'Set Image'
       },
-      success: function(response) {        
-        setTimeout(function(){
-          $('.display-loading-giftcardMagic').hide();
-          setTimeout(function(){location.reload();},2000);
-        },2000);        
-      }
+      multiple: false // Set to true for multiple image selection
     });
-});
 
+    imageUploader.on('select', function () {
+      var attachment = imageUploader.state().get('selection').first().toJSON();
+      $('#image_bg').attr('src', attachment.url);
+      $('#upload-bg-image').val(attachment.url);
+      $('.preview-logo').addClass('show');
+    });
+
+    imageUploader.open();
+  });
+  function toggleGroup(element, targetName) {
+    if ($(element).is(':checked')) {
+      $('.group-giftcardMagic [name="' + targetName + '"]').closest('.group-giftcardMagic').show();
+    } else {
+      $('.group-giftcardMagic [name="' + targetName + '"]').closest('.group-giftcardMagic').hide();
+    }
+  }
+
+  $('.toogle-slider-giftcardMagic[name="show_name"]').on('change', function () {
+    toggleGroup(this, 'your_name');
+  });
+
+  $('.toogle-slider-giftcardMagic[name="show_recipient_name"]').on('change', function () {
+    toggleGroup(this, 'from_name');
+  });
+
+  $('.toogle-slider-giftcardMagic[name="show_voucher_value"]').on('change', function () {
+    toggleGroup(this, 'voucher_value');
+  });
 });

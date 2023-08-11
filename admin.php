@@ -111,14 +111,14 @@ function gift_card_magic_dashboard_page()
 // Callback function to display the submenu page content - Settings
 function gift_card_magic_settings_page_old()
 {
-    // Xử lý khi người dùng submit form
+    // Handling form submission by users
     if (isset($_POST['save-giftcardMagic']) && wp_verify_nonce($_POST['_wpnonce'], 'save-giftcardMagic')) {
-        // Kiểm tra quyền trước khi xử lý
+        // Check user permissions before processing
         if (!current_user_can('manage_options')) {
             wp_die('Unauthorized access', 'Unauthorized', array('response' => 403));
         }
 
-        // Lấy dữ liệu từ form và chuyển đổi sang dạng dữ liệu phù hợp
+        // Retrieve data from the form and convert to appropriate data types
         $minimum_voucher_value = intval($_POST['minimum_voucher_value']);
         $maximum_voucher_value = intval($_POST['maximum_voucher_value']);
         $voucher_expiry_value = intval($_POST['voucher_expiry_value']);
@@ -127,8 +127,8 @@ function gift_card_magic_settings_page_old()
         $hide_price_from_voucher = isset($_POST['hide_price_from_voucher']) ? intval($_POST['hide_price_from_voucher']) : 0;
         $voucher_preview_button = isset($_POST['voucher_preview_button']) ? intval($_POST['voucher_preview_button']) : 0;
         $custom_loader_url = sanitize_text_field($_POST['custom_loader_url']);
-        // Tiến hành cập nhật dữ liệu vào bảng wp_gcm_settings
 
+        // Proceed to update data in the wp_gcm_settings table
         global $wpdb;
         $table_name = $wpdb->prefix . 'gcm_settings';
 
@@ -144,17 +144,15 @@ function gift_card_magic_settings_page_old()
         );
 
         $where = array(
-            'id' => 1 // Điều kiện WHERE
+            'id' => 1 // WHERE condition
         );
 
         $check = $wpdb->update($table_name, $data, $where);
         if ($check !== false) {
-            add_settings_error('settings_saved', 'settings_saved', 'Dữ liệu settings lưu thành công.', 'updated');
+            add_settings_error('settings_saved', 'settings_saved', 'Settings data saved successfully.', 'updated');
         }
-
-
-
     }
+
     // Get the plugin directory path
     $plugin_dir = plugin_dir_path(__FILE__);
 
