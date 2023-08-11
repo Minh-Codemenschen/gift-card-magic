@@ -110,7 +110,6 @@ jQuery(document).ready(function ($) {
       $('#upload-bg-image').val(attachment.url);
       $('.preview-logo').addClass('show');
     });
-
     imageUploader.open();
   });
   function toggleGroup(element, targetName) {
@@ -121,15 +120,19 @@ jQuery(document).ready(function ($) {
     }
   }
 
-  $('.toogle-slider-giftcardMagic[name="show_name"]').on('change', function () {
+  $('.toogle-slider-giftcardMagic[name="gcm_settings_frontend[show_name]"]').on('change', function () {
     toggleGroup(this, 'your_name');
   });
 
-  $('.toogle-slider-giftcardMagic[name="show_recipient_name"]').on('change', function () {
+  $('.toogle-slider-giftcardMagic[name="gcm_settings_frontend[show_recipient_name]"]').on('change', function () {
     toggleGroup(this, 'from_name');
   });
 
-  $('.toogle-slider-giftcardMagic[name="show_voucher_value"]').on('change', function () {
+  $('.toogle-slider-giftcardMagic[name="gcm_settings_frontend[show_voucher_value]"]').on('change', function () {
     toggleGroup(this, 'voucher_value');
   });
+  $('.toggle-giftcardMagic input[data-id]').click(function(){
+    var data_id = $(this).attr('data-id');
+    $('#'+data_id).toggleClass('hide');
+  })
 });
