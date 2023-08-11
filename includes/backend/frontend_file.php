@@ -40,9 +40,8 @@ function gift_card_magic_frontend_tab_action() {
     <div class="box-giftcardMagic">
         <div class="inner-box-giftcardMagic">
             <div class="table-setting-giftcardMagic">
-                <div class="wrap-item-giftcardMagic" style="background-color:<?php echo $background_color; ?>;">
+                <div class="wrap-item-giftcardMagic" style="background:url(<?php echo plugins_url( 'gift-card-magic/assets/images/background-demo-2.jpg'); ?>) no-repeat;">
                     <div class="image-giftcardMagic">
-                        <img src="<?php echo plugins_url( 'gift-card-magic/assets/images/demo.jpg'); ?>">
                     </div>
                     <div class="content-giftcardMagic">
                         <div style="color:<?php echo $text_color; ?>" <?php echo $show_name == 1 ? '' : 'style="display:none;"'; ?> class="group-giftcardMagic">
