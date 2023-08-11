@@ -1,9 +1,10 @@
 <?php
 
 // Add action for gift_card_magic_settings_tab
-function gift_card_magic_settings_tab_action() {
+function gift_card_magic_settings_tab_action()
+{
     global $wpdb;
-    $table_settings = $wpdb->prefix . 'gcm_settings'; 
+    $table_settings = $wpdb->prefix . 'gcm_settings';
     $sql_select_settings = "SELECT * FROM $table_settings";
     $results = $wpdb->get_results($sql_select_settings);
     $minimum_voucher_value = 0;
@@ -24,8 +25,8 @@ function gift_card_magic_settings_tab_action() {
         $hide_price_from_voucher = $result->hide_price_from_voucher;
         $voucher_preview_button = $result->voucher_preview_button;
         $custom_loader_url = $result->custom_loader_url;
-    } 
-    ?>
+    }
+?>
     <div class="box-giftcardMagic">
         <div class="top-giftcardMagic">
             <h2>Settings</h2>
@@ -36,7 +37,7 @@ function gift_card_magic_settings_tab_action() {
         <div class="inner-box-giftcardMagic">
             <div class="group-setting-giftcardMagic">
                 <label class="text-label">Minimum Voucher Value<br>
-                <span>Leave 0 if no minimum value</span></label>
+                    <span>Leave 0 if no minimum value</span></label>
                 <div class="wrap-field">
                     <input type="number" class="field-giftcardMagic" name="minimum_voucher_value" value="<?php echo $minimum_voucher_value; ?>" required>
                 </div>
@@ -55,20 +56,21 @@ function gift_card_magic_settings_tab_action() {
             </div>
             <div class="group-setting-giftcardMagic">
                 <label class="text-label">Voucher Expiry Value<br>
-                <span>Example: (Days: 60, Fixed Date: 21.02.2021)</span></label>
+                    <span>Example: (Days: 60, Fixed Date: 21.02.2021)</span></label>
                 <div class="wrap-field">
                     <input type="number" class="field-giftcardMagic" name="voucher_expiry_value" value="<?php echo $voucher_expiry_value; ?>">
                 </div>
             </div>
             <div class="group-setting-giftcardMagic">
                 <label class="text-label">Hide voucher First step<br>
-                <span>This will hide the first "Select Template" step</span></label>
+                    <span>This will hide the first "Select Template" step</span></label>
                 <div class="wrap-field">
                     <select class="select-setting-giftcardMagic field-giftcardMagic" name="hide_voucher_first_step">
                         <option value="0" <?php echo $hide_voucher_first_step == 0 ? 'selected' : ''; ?>>No</option>
                         <option value="1" <?php echo $hide_voucher_first_step == 1 ? 'selected' : ''; ?>>Yes</option>
                     </select>
                 </div>
+
             </div>
             <div class="group-setting-giftcardMagic">
                 <label class="text-label">Hide Price from voucher</label>
@@ -96,6 +98,6 @@ function gift_card_magic_settings_tab_action() {
             </div>
         </div>
     </div>
-    <?php 
+<?php
 }
 add_action('gift_card_magic_settings_tab', 'gift_card_magic_settings_tab_action');
