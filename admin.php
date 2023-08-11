@@ -7,8 +7,8 @@ function gift_card_magic_add_menu()
 {
     // Add main menu
     $menu_slug = add_menu_page(
-        'Gift Card Magic',      // Page title
-        'Gift Card Magic',      // Menu name
+        __("Gift Card Magic","gift-card-magic"),      // Page title
+        __("Gift Card Magic","gift-card-magic"),      // Menu name
         'manage_options',       // Required capability to view the menu
         'gift-card-magic',      // Menu slug
         'gift_card_magic_page', // Callback function to display the menu page content
@@ -19,8 +19,8 @@ function gift_card_magic_add_menu()
     // Add submenus
     add_submenu_page(
         'gift-card-magic',      // Parent menu slug
-        'Dashboard',            // Submenu page title
-        'Dashboard',            // Submenu name
+        __("Dashboard","gift-card-magic"),            // Submenu page title
+        __("Dashboard","gift-card-magic"),            // Submenu name
         'manage_options',       // Required capability to view the submenu
         'gift-card-dashboard',  // Submenu slug
         'gift_card_magic_dashboard_page' // Callback function to display the submenu page content
@@ -29,8 +29,8 @@ function gift_card_magic_add_menu()
     // Add submenu (if needed)
     add_submenu_page(
         'gift-card-magic',      // Parent menu slug
-        'Settings',             // Submenu page title
-        'Settings',             // Submenu name
+        __("Settings","gift-card-magic"),             // Submenu page title
+        __("Settings","gift-card-magic"),             // Submenu name
         'manage_options',       // Required capability to view the submenu
         'gift-card-settings',    // Submenu slug
         'gift_card_magic_settings_page' // Callback function to display the submenu page content
@@ -39,8 +39,8 @@ function gift_card_magic_add_menu()
     // Add submenu "Gift Card Magic" cho custom post type "Gift Card Magic"
     add_submenu_page(
         'gift-card-magic',                         // Parent menu slug
-        'Gift Card Magic',                        // Submenu page title
-        'Gift Card Magic',                        // Submenu name
+        __("Gift Card Magic","gift-card-magic"),                        // Submenu page title
+        __("Gift Card Magic","gift-card-magic"),                        // Submenu name
         'manage_options',                         // Required capability to view the submenu
         'edit.php?post_type=gift_card_magic'       // Submenu slug
     );
@@ -48,8 +48,8 @@ function gift_card_magic_add_menu()
     // Add submenu "Categories" cho custom post type "Gift Card Magic"
     add_submenu_page(
         'gift-card-magic',                         // Parent menu slug
-        'Categories',                             // Submenu page title
-        'Categories',                             // Submenu name
+        __("Categories","gift-card-magic"),                             // Submenu page title
+        __("Categories","gift-card-magic"),                             // Submenu name
         'manage_options',                         // Required capability to view the submenu
         'edit-tags.php?taxonomy=gift_card_category' // Submenu slug
     );
@@ -204,11 +204,11 @@ function gift_card_magic_settings_page()
 ?>
     <div class="wrap">
         <form action="<?php echo $current_admin_url; ?>" method="POST" id="setting-giftcardMagic" class="wrap-giftcardMagic">
-            <h1>Settings</h1>
+            <h1><?php _e('Settings','gift-card-magic'); ?></h1>
             <h2 class="nav-tab-wrapper">
-                <a href="#" class="nav-tab nav-tab-active" data-tab="settings">Settings</a>
-                <a href="#" class="nav-tab" data-tab="frontend">Frontend</a>
-                <a href="#" class="nav-tab" data-tab="payment">Payment</a>
+                <a href="#" class="nav-tab nav-tab-active" data-tab="settings"><?php _e('Settings','gift-card-magic'); ?></a>
+                <a href="#" class="nav-tab" data-tab="frontend"><?php _e('Frontend','gift-card-magic'); ?></a>
+                <a href="#" class="nav-tab" data-tab="payment"><?php _e('Payment','gift-card-magic'); ?></a>
             </h2>
             <div id="tab-content">
                 <div id="tab-settings" class="tab-panel">
@@ -222,7 +222,7 @@ function gift_card_magic_settings_page()
                 </div>
             </div>
             <div class="sidebar-giftcardMagic">
-                <p class="submit"><input type="submit" value="Save" id="save-giftcardMagic"></p>
+                <p class="submit"><input type="submit" value="<?php _e('Save','gift-card-magic'); ?>" id="save-giftcardMagic"></p>
             </div>
         </form>
     </div>
