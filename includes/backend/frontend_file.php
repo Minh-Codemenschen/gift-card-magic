@@ -6,17 +6,6 @@ function gift_card_magic_frontend_tab_action() {
     $table_settings_frontend = $wpdb->prefix . 'gcm_settings_frontend'; 
     $sql_select_settings_frontend = "SELECT * FROM $table_settings_frontend";
     $results_fr = $wpdb->get_results($sql_select_settings_frontend);
-    $show_name = 1;
-    $show_recipient_name = 1;
-    $show_personal_message = 1;
-    $show_voucher_value = 1;
-    $background_color = '#fff';
-    $text_color = '#000';
-    $terms = 'Terms and conditions apply.';
-    $email_company = 'company@gmail.com';
-    $link_company = 'example.com';
-    $company_logo = '';
-    $company_name = '';
     if ($results_fr) {
         $result_fr = $results_fr[0];
         $show_name = $result_fr->show_name;
@@ -86,28 +75,28 @@ function gift_card_magic_frontend_tab_action() {
                     <div class="group-setting-giftcardMagic">
                         <label class="text-label">Your Name</label>
                         <label class="toggle-giftcardMagic ">
-                            <input type="checkbox" class="toogle-slider-giftcardMagic" name="show_name" <?php echo $show_name == 1 ? 'checked' : ''; ?>> 
+                            <input type="checkbox" class="toogle-slider-giftcardMagic" name="gcm_settings_frontend[show_name]" value="1" <?php echo $show_name == 1 ? 'checked' : ''; ?>> 
                             <span class="toggle-slider-giftcardMagic"></span>
                         </label>
                     </div>
                     <div class="group-setting-giftcardMagic">
                         <label class="text-label">Recipient Name</label>
                         <label class="toggle-giftcardMagic">
-                            <input type="checkbox" class="toogle-slider-giftcardMagic" name="show_recipient_name" <?php echo $show_recipient_name == 1 ? 'checked' : ''; ?>>
+                            <input type="checkbox" class="toogle-slider-giftcardMagic" name="gcm_settings_frontend[show_recipient_name]" value="1" <?php echo $show_recipient_name == 1 ? 'checked' : ''; ?>>
                             <span class="toggle-slider-giftcardMagic"></span>
                         </label>
                     </div>
                     <div class="group-setting-giftcardMagic">
                         <label class="text-label">Voucher Value</label>
                         <label class="toggle-giftcardMagic ">
-                            <input type="checkbox" class="toogle-slider-giftcardMagic" name="show_voucher_value" <?php echo $show_voucher_value == 1 ? 'checked' : ''; ?>>
+                            <input type="checkbox" class="toogle-slider-giftcardMagic" name="gcm_settings_frontend[show_voucher_value]" value="1" <?php echo $show_voucher_value == 1 ? 'checked' : ''; ?>>
                             <span class="toggle-slider-giftcardMagic"></span>
                         </label>
                     </div>
                     <div class="group-setting-giftcardMagic">
                         <label class="text-label">Personal Message</label>
                         <label class="toggle-giftcardMagic ">
-                            <input type="checkbox" class="toogle-slider-giftcardMagic" name="show_personal_message" <?php echo $show_personal_message == 1 ? 'checked' : ''; ?>>
+                            <input type="checkbox" class="toogle-slider-giftcardMagic" name="gcm_settings_frontend[show_personal_message]" value="1" <?php echo $show_personal_message == 1 ? 'checked' : ''; ?>>
                             <span class="toggle-slider-giftcardMagic"></span>
                         </label>
                     </div>
@@ -115,17 +104,17 @@ function gift_card_magic_frontend_tab_action() {
                 <h3>Style</h3>
                 <div class="group-setting-giftcardMagic">
                     <label class="text-label">Background Color</label>
-                    <input type="color" name="background_color" value="<?php echo $background_color; ?>">
+                    <input type="color" name="gcm_settings_frontend[background_color]" value="<?php echo $background_color; ?>">
                 </div>   
                 <div class="group-setting-giftcardMagic">
                     <label class="text-label">Text Color</label>
-                    <input type="color" name="text_color" value="<?php echo $text_color; ?>">
+                    <input type="color" name="gcm_settings_frontend[text_color]" value="<?php echo $text_color; ?>">
                 </div>                
                 <h3>Information</h3>                
                 <div class="group-setting-giftcardMagic">
                     <label class="text-label">Company Logo (Required)</label>
                     <label class="field-file-giftcardMagic">
-                        <input type="text" class="field-giftcardMagic" name="company_logo" value="<?php echo $company_logo; ?>" id="upload-logo">
+                        <input type="text" class="field-giftcardMagic" name="gcm_settings_frontend[company_logo]" value="<?php echo $company_logo; ?>" id="upload-logo">
                         <span class="text-file">Upload Logo</span>
                         <div class="preview-logo <?php echo $company_logo == '' ? '' : 'show'; ?>">
                             <img src="#" id="image_url">
@@ -134,19 +123,19 @@ function gift_card_magic_frontend_tab_action() {
                 </div>
                 <div class="group-setting-giftcardMagic">
                     <label class="text-label">Company Name (Required)</label>
-                    <input type="text" class="field-giftcardMagic" name="company_name" value="<?php echo $company_name; ?>">
+                    <input type="text" class="field-giftcardMagic" name="gcm_settings_frontend[company_name]" value="<?php echo $company_name; ?>">
                 </div>
                 <div class="group-setting-giftcardMagic">
                     <label class="text-label">Terms Content</label>
-                    <input type="text" class="field-giftcardMagic" name="terms" value="<?php echo $terms; ?>" maxlength="200">
+                    <input type="text" class="field-giftcardMagic" name="gcm_settings_frontend[terms]" value="<?php echo $terms; ?>" maxlength="200">
                 </div>
                 <div class="group-setting-giftcardMagic">
                     <label class="text-label">Email company</label>
-                    <input type="text" class="field-giftcardMagic" name="email_company" value="<?php echo $email_company; ?>">
+                    <input type="text" class="field-giftcardMagic" name="gcm_settings_frontend[email_company]" value="<?php echo $email_company; ?>">
                 </div>
                 <div class="group-setting-giftcardMagic">
                     <label class="text-label">Link company</label>
-                    <input type="text" class="field-giftcardMagic" name="link_company" value="<?php echo $link_company; ?>">
+                    <input type="text" class="field-giftcardMagic" name="gcm_settings_frontend[link_company]" value="<?php echo $link_company; ?>">
                 </div>
             </div>
 

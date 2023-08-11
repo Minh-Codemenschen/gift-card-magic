@@ -83,6 +83,7 @@ add_action('admin_menu', 'gift_card_magic_remove_from_main_menu');
 // Register and enqueue the JavaScript file
 function gift_card_magic_enqueue_scripts()
 {
+    wp_enqueue_media();
     // Register the script
     wp_register_script(
         'gift-card-magic-backend', // Handle/slug for the script
@@ -91,6 +92,9 @@ function gift_card_magic_enqueue_scripts()
         '1.0', // Version number (optional)
         true // Enqueue the script in the footer
     );
+    wp_localize_script('gift-card-magic-backend', 'pluginData', array(
+        'siteUrl' => esc_url(site_url())
+    )); 
 
     // Enqueue the script
     wp_enqueue_script('gift-card-magic-backend');
@@ -105,7 +109,7 @@ function gift_card_magic_dashboard_page()
 }
 
 // Callback function to display the submenu page content - Settings
-function gift_card_magic_settings_page()
+function gift_card_magic_settings_page_old()
 {
     // Handling form submission by users
     if (isset($_POST['save-giftcardMagic']) && wp_verify_nonce($_POST['_wpnonce'], 'save-giftcardMagic')) {
@@ -185,3 +189,76 @@ function gift_card_magic_settings_page()
     </div>
 <?php
 }
+function gift_card_magic_settings_page()
+{
+    // Get the plugin directory path
+    $plugin_dir = plugin_dir_path(__FILE__);
+
+    // Load the action files
+    require_once $plugin_dir . 'includes/backend/settings_file.php';
+    require_once $plugin_dir . 'includes/backend/frontend_file.php';
+    require_once $plugin_dir . 'includes/backend/payment_file.php';
+    $current_admin_url = esc_url( home_url( $_SERVER['REQUEST_URI'] ) );
+?>
+    <div class="wrap">
+        <form action="<?php echo $current_admin_url; ?>" method="POST" id="setting-giftcardMagic" class="wrap-giftcardMagic">
+            <h1>Settings</h1>
+            <h2 class="nav-tab-wrapper">
+                <a href="#" class="nav-tab nav-tab-active" data-tab="settings">Settings</a>
+                <a href="#" class="nav-tab" data-tab="frontend">Frontend</a>
+                <a href="#" class="nav-tab" data-tab="payment">Payment</a>
+            </h2>
+            <div id="tab-content">
+                <div id="tab-settings" class="tab-panel">
+                    <?php do_action('gift_card_magic_settings_tab'); ?>
+                </div>
+                <div id="tab-frontend" class="tab-panel" style="display:none">
+                    <?php do_action('gift_card_magic_frontend_tab'); ?>
+                </div>
+                <div id="tab-payment" class="tab-panel" style="display:none">
+                    <?php do_action('gift_card_magic_payment_tab'); ?>
+                </div>
+            </div>
+            <div class="sidebar-giftcardMagic">
+                <p class="submit"><input type="submit" value="Save" id="save-giftcardMagic"></p>
+            </div>
+        </form>
+    </div>
+    <div class="display-loading-giftcardMagic">
+        <div class="wrap-loading-giftcardMagic">
+            <span class="loader-giftcardMagic"></span>
+        </div>
+    </div>
+<?php
+}
+// AJAX handler function
+function save_giftcard_settings() {
+    parse_str($_POST['form_data'], $form_data);
+    global $wpdb;
+
+    // Update data in gcm_settings_payment table
+    $wpdb->update(
+        $wpdb->prefix . 'gcm_settings_payment', // Replace with your actual table name
+        $form_data['gcm_settings_payment'], // Data to update
+        array('id' => 1) // Update condition, change as per your needs
+    );
+
+    // Update data in gcm_settings_frontend table
+    $wpdb->update(
+        $wpdb->prefix . 'gcm_settings_frontend', // Replace with your actual table name
+        $form_data['gcm_settings_frontend'], // Data to update
+        array('id' => 1) // Update condition, change as per your needs
+    );
+
+    // Update data in gcm_settings table
+    $wpdb->update(
+        $wpdb->prefix . 'gcm_settings', // Replace with your actual table name
+        $form_data['gcm_settings'], // Data to update
+        array('id' => 1) // Update condition, change as per your needs
+    );
+    echo 'Settings saved successfully!';
+    wp_die();
+}
+
+add_action('wp_ajax_save_giftcard_settings', 'save_giftcard_settings');
+add_action('wp_ajax_nopriv_save_giftcard_settings', 'save_giftcard_settings'); // For non-logged-in users
