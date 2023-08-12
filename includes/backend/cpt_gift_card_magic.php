@@ -56,16 +56,16 @@ function gift_card_magic_custom_post_type()
 
     // Register custom taxonomy
     $taxonomy_labels = array(
-        'name'              => _x('Gift Card Categories', 'taxonomy general name', 'gift-card-magic'),
-        'singular_name'     => _x('Gift Card Category', 'taxonomy singular name', 'gift-card-magic'),
-        'search_items'      => __('Search Gift Card Categories', 'gift-card-magic'),
-        'all_items'         => __('All Gift Card Categories', 'gift-card-magic'),
-        'parent_item'       => __('Parent Gift Card Category', 'gift-card-magic'),
-        'parent_item_colon' => __('Parent Gift Card Category:', 'gift-card-magic'),
-        'edit_item'         => __('Edit Gift Card Category', 'gift-card-magic'),
-        'update_item'       => __('Update Gift Card Category', 'gift-card-magic'),
-        'add_new_item'      => __('Add New Gift Card Category', 'gift-card-magic'),
-        'new_item_name'     => __('New Gift Card Category Name', 'gift-card-magic'),
+        'name'              => _x('Categories', 'taxonomy general name', 'gift-card-magic'),
+        'singular_name'     => _x('Category', 'taxonomy singular name', 'gift-card-magic'),
+        'search_items'      => __('Search Categories', 'gift-card-magic'),
+        'all_items'         => __('All Categories', 'gift-card-magic'),
+        'parent_item'       => __('Parent Category', 'gift-card-magic'),
+        'parent_item_colon' => __('Parent Category:', 'gift-card-magic'),
+        'edit_item'         => __('Edit Category', 'gift-card-magic'),
+        'update_item'       => __('Update Category', 'gift-card-magic'),
+        'add_new_item'      => __('Add New Category', 'gift-card-magic'),
+        'new_item_name'     => __('New Category Name', 'gift-card-magic'),
         'menu_name'         => __('Categories', 'gift-card-magic'),
     );
 
@@ -173,3 +173,55 @@ function move_background_gift_card_to_advanced_sortables()
     }
 }
 add_action('do_meta_boxes', 'move_background_gift_card_to_advanced_sortables');
+
+function custom_manage_posts_columns($columns) {
+    $new_columns = array(
+        'cb' => '<input type="checkbox" />',
+        'id' => 'ID',
+        'title' => 'Title',
+        'categories' => 'Categories',
+        'date' => 'Date',
+    );
+
+    // Di chuyển cột title vào sau checkbox và trước IDpost
+    $title = $new_columns['title'];
+    unset($new_columns['title']);
+    $columns = array_merge($columns, $new_columns);
+    $columns['title'] = $title;
+
+    // Xóa cột Categories và Tags
+    unset($columns['categories']);
+    unset($columns['tags']);
+
+    return $columns;
+}
+add_filter('manage_gift_card_magic_posts_columns', 'custom_manage_posts_columns');
+
+function custom_manage_posts_custom_column($column, $post_id) {
+    if ($column === 'id') {
+        echo $post_id;
+    }
+}
+add_action('manage_gift_card_magic_posts_custom_column', 'custom_manage_posts_custom_column', 10, 2);
+
+
+// Thêm cột ID vào danh sách hiển thị taxonomy
+function add_taxonomy_id_column($columns) {
+    $columns['taxonomy_id'] = 'ID';
+    return $columns;
+}
+add_filter('manage_edit-gift_card_category_columns', 'add_taxonomy_id_column');
+
+// Hiển thị dữ liệu trong cột ID
+function display_taxonomy_id_column($content, $column_name, $term_id) {
+    if ($column_name === 'taxonomy_id') {
+        return $term_id;
+    }
+    return $content;
+}
+add_filter('manage_gift_card_category_custom_column', 'display_taxonomy_id_column', 10, 3);
+
+
+
+
+
