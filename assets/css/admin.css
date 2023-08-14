@@ -13,6 +13,21 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+.post-type-gift_card_magic .row-actions .view{
+    display: none;
+}
+.post-type-gift_card_magic .column-idpost::before,
+.taxonomy-gift_card_category .column-id::before{
+    content: " " !important;
+}
+.taxonomy-gift_card_category .taxonomyid-column,
+.taxonomy-gift_card_category .column-id,
+.post-type-gift_card_magic .column-idpost,
+.post-type-gift_card_magic .postid-column{
+    display: table-cell;
+    width: 1%;
+    white-space: nowrap;
+}
 .wrap-item-giftcardMagic {
     width: 450px;
     max-width: 100%;

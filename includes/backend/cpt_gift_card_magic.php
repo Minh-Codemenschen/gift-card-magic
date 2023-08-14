@@ -6,35 +6,35 @@ function gift_card_magic_custom_post_type()
 
     $labels = array(
         'name'                  => _x('Gift Card Magic', 'Post Type General Name', 'gift-card-magic'),
-        'singular_name'         => _x('Gift Card', 'Post Type Singular Name', 'gift-card-magic'),
+        'singular_name'         => _x('Gift Card Magic', 'Post Type Singular Name', 'gift-card-magic'),
         'menu_name'             => __('Gift Card Magic', 'gift-card-magic'),
-        'name_admin_bar'        => __('Gift Card', 'gift-card-magic'),
-        'archives'              => __('Gift Card Archives', 'gift-card-magic'),
-        'attributes'            => __('Gift Card Attributes', 'gift-card-magic'),
-        'parent_item_colon'     => __('Parent Gift Card:', 'gift-card-magic'),
-        'all_items'             => __('All Gift Cards', 'gift-card-magic'),
-        'add_new_item'          => __('Add New Gift Card', 'gift-card-magic'),
+        'name_admin_bar'        => __('Gift Card Magic', 'gift-card-magic'),
+        'archives'              => __('Gift Card Magic Archives', 'gift-card-magic'),
+        'attributes'            => __('Gift Card Magic Attributes', 'gift-card-magic'),
+        'parent_item_colon'     => __('Parent Gift Card Magic:', 'gift-card-magic'),
+        'all_items'             => __('All Gift Cards Magic', 'gift-card-magic'),
+        'add_new_item'          => __('Add New Gift Card Magic', 'gift-card-magic'),
         'add_new'               => __('Add New', 'gift-card-magic'),
-        'new_item'              => __('New Gift Card', 'gift-card-magic'),
-        'edit_item'             => __('Edit Gift Card', 'gift-card-magic'),
-        'update_item'           => __('Update Gift Card', 'gift-card-magic'),
-        'view_item'             => __('View Gift Card', 'gift-card-magic'),
-        'view_items'            => __('View Gift Cards', 'gift-card-magic'),
-        'search_items'          => __('Search Gift Card', 'gift-card-magic'),
+        'new_item'              => __('New Gift Card Magic', 'gift-card-magic'),
+        'edit_item'             => __('Edit Gift Card Magic', 'gift-card-magic'),
+        'update_item'           => __('Update Gift Card Magic', 'gift-card-magic'),
+        'view_item'             => __('View Gift Card Magic', 'gift-card-magic'),
+        'view_items'            => __('View Gift Cards Magic', 'gift-card-magic'),
+        'search_items'          => __('Search Gift Card Magic', 'gift-card-magic'),
         'not_found'             => __('Not found', 'gift-card-magic'),
         'not_found_in_trash'    => __('Not found in Trash', 'gift-card-magic'),
-        'featured_image'        => __('Background Gift Card', 'gift-card-magic'),
-        'set_featured_image'    => __('Set background Gift Card', 'gift-card-magic'),
-        'remove_featured_image' => __('Remove background Gift Card', 'gift-card-magic'),
-        'use_featured_image'    => __('Use as background Gift Card', 'gift-card-magic'),
-        'insert_into_item'      => __('Insert into Gift Card', 'gift-card-magic'),
-        'uploaded_to_this_item' => __('Uploaded to this Gift Card', 'gift-card-magic'),
-        'items_list'            => __('Gift Cards list', 'gift-card-magic'),
-        'items_list_navigation' => __('Gift Cards list navigation', 'gift-card-magic'),
-        'filter_items_list'     => __('Filter Gift Cards list', 'gift-card-magic'),
+        'featured_image'        => __('Background Gift Card Magic', 'gift-card-magic'),
+        'set_featured_image'    => __('Set background Gift Card Magic', 'gift-card-magic'),
+        'remove_featured_image' => __('Remove background Gift Card Magic', 'gift-card-magic'),
+        'use_featured_image'    => __('Use as background Gift Card Magic', 'gift-card-magic'),
+        'insert_into_item'      => __('Insert into Gift Card Magic', 'gift-card-magic'),
+        'uploaded_to_this_item' => __('Uploaded to this Gift Card Magic', 'gift-card-magic'),
+        'items_list'            => __('Gift Cards Magic list', 'gift-card-magic'),
+        'items_list_navigation' => __('Gift Cards Magic list navigation', 'gift-card-magic'),
+        'filter_items_list'     => __('Filter Gift Cards Magic list', 'gift-card-magic'),
     );
     $args = array(
-        'label'                 => __('Gift Card', 'gift-card-magic'),
+        'label'                 => __('Gift Card Magic', 'gift-card-magic'),
         'description'           => __('Custom post type for Gift Card Magic', 'gift-card-magic'),
         'labels'                => $labels,
         'supports'              => array('title', 'editor', 'thumbnail'),
@@ -124,7 +124,7 @@ function gift_card_magic_add_custom_meta_box()
 {
     add_meta_box(
         'gcmagic_price',
-        'Gift Card Details',
+        'Gift Card Magic Details',
         'gift_card_magic_custom_field_callback',
         'gift_card_magic',
         'normal',
@@ -174,53 +174,84 @@ function move_background_gift_card_to_advanced_sortables()
 }
 add_action('do_meta_boxes', 'move_background_gift_card_to_advanced_sortables');
 
-function custom_manage_posts_columns($columns) {
+
+// Customizing columns in the taxonomy interface
+function custom_manage_taxonomy_columns($columns) {
+    // Add the 'ID' column after 'cb' and before 'name'
     $new_columns = array(
         'cb' => '<input type="checkbox" />',
-        'id' => 'ID',
-        'title' => 'Title',
-        'categories' => 'Categories',
-        'date' => 'Date',
+        'id' => '<label class="taxonomyid-column">ID</label>',
+        'name' => 'Name',
+        'description' => 'Description',
+        'slug' => 'Slug',
+        'count' => 'Count',
     );
 
-    // Di chuyển cột title vào sau checkbox và trước IDpost
-    $title = $new_columns['title'];
-    unset($new_columns['title']);
-    $columns = array_merge($columns, $new_columns);
-    $columns['title'] = $title;
-
-    // Xóa cột Categories và Tags
-    unset($columns['categories']);
-    unset($columns['tags']);
-
-    return $columns;
+    return $new_columns;
 }
-add_filter('manage_gift_card_magic_posts_columns', 'custom_manage_posts_columns');
+add_filter('manage_edit-gift_card_category_columns', 'custom_manage_taxonomy_columns');
 
-function custom_manage_posts_custom_column($column, $post_id) {
-    if ($column === 'id') {
-        echo $post_id;
-    }
-}
-add_action('manage_gift_card_magic_posts_custom_column', 'custom_manage_posts_custom_column', 10, 2);
-
-
-// Thêm cột ID vào danh sách hiển thị taxonomy
-function add_taxonomy_id_column($columns) {
-    $columns['taxonomy_id'] = 'ID';
-    return $columns;
-}
-add_filter('manage_edit-gift_card_category_columns', 'add_taxonomy_id_column');
-
-// Hiển thị dữ liệu trong cột ID
-function display_taxonomy_id_column($content, $column_name, $term_id) {
-    if ($column_name === 'taxonomy_id') {
+// Custom function to display content in the custom column for taxonomy
+function custom_manage_taxonomy_custom_column($content, $column_name, $term_id) {
+    if ($column_name === 'id') {
+        // Display the term ID in the 'ID' column
         return $term_id;
     }
     return $content;
 }
-add_filter('manage_gift_card_category_custom_column', 'display_taxonomy_id_column', 10, 3);
+add_action('manage_gift_card_category_custom_column', 'custom_manage_taxonomy_custom_column', 10, 3);
 
+// Customizing columns in the post interface
+function custom_manage_posts_columns($columns) {
+    $columns = array(
+        'cb' => '<input type="checkbox" />',
+        'idpost' => '<label class="postid-column">ID</label>',
+        'title' => 'Title',
+        'categories' => 'Categories',
+        'tag' => 'Tags',
+        'categories_2' => 'Categories',
+        'date' => 'Date',
+
+    );
+    unset($columns['categories']);
+    unset($columns['tag']);
+    return $columns;
+}
+add_filter('manage_gift_card_magic_posts_columns', 'custom_manage_posts_columns');
+
+// Custom function to display content in the custom column
+function custom_manage_posts_custom_column($column, $post_id)
+{
+    if ($column === 'idpost') {
+        // Display the post ID in the 'idpost' column
+        echo $post_id;
+    }
+    if ($column === 'categories_2') {
+        // Display the categories from the "gift_card_category" taxonomy
+        $categories = get_the_terms($post_id, 'gift_card_category');
+        
+        if (is_array($categories) && !empty($categories)) {
+            $category_links = array();
+            foreach ($categories as $category) {
+                $term_link = add_query_arg(
+                    array(
+                        'taxonomy' => 'gift_card_category',
+                        'tag_ID' => $category->term_id,
+                        'post_type' => 'post',
+                        'wp_http_referer' => urlencode(wp_unslash($_SERVER['REQUEST_URI'])),
+                    ),
+                    admin_url('term.php')
+                );
+
+                $category_links[] = '<a href="' . esc_url($term_link) . '">' . $category->name . '</a>';
+            }
+            echo implode(', ', $category_links);
+        } else {
+            echo '_';
+        }
+    }
+}
+add_action('manage_gift_card_magic_posts_custom_column', 'custom_manage_posts_custom_column', 10, 2);
 
 
 
