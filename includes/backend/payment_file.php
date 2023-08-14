@@ -64,27 +64,29 @@ function gift_card_magic_payment_tab_action() {
             <label class="text-label"><?php _e('PayPal Standar','gift-card-magic'); ?></label>
             <label class="toggle-giftcardMagic ">
                 <input type="checkbox" data-id="paypal_standar" class="toogle-slider-giftcardMagic" 
-                name="gcm_settings_payment[paypal_standar]" value="1" <?php echo $paypal_standar == 1 ? 'checked' : ''; ?>> 
+                name="paypal_standar" value="1" <?php echo $paypal_standar == 1 ? 'checked' : ''; ?>> 
                 <span class="toggle-slider-giftcardMagic"></span> <?php _e('Safe and secure payments handle by PayPal','gift-card-magic'); ?>
             </label>
+            <input type="hidden" class="toogle-value-giftcardMagic" value="<?php echo $paypal_standar; ?>" name="gcm_settings_payment[paypal_standar]">
         </div>
         <div class="group-setting-giftcardMagic">
             <label class="text-label"><?php _e('Stripe','gift-card-magic'); ?></label>
             <label class="toggle-giftcardMagic">
-                <input type="checkbox" data-id="stripe" class="toogle-slider-giftcardMagic" 
-                name="gcm_settings_payment[stripe]" value="1" <?php echo $stripe == 1 ? 'checked' : ''; ?>> 
+                <input type="checkbox" data-id="stripe" class="toogle-slider-giftcardMagic" name="stripe" value="1" <?php echo $stripe == 1 ? 'checked' : ''; ?>> 
                 <span class="toggle-slider-giftcardMagic"></span> <?php _e('Connet your existing Stripe Account or create a new one to start accepting payments.','gift-card-magic'); ?>
             </label>
+            <input type="hidden" class="toogle-value-giftcardMagic" name="gcm_settings_payment[stripe]" value="1" <?php echo $stripe ; ?>> 
         </div>
     </div>
-    <div class="box-giftcardMagic hide" id="paypal_standar">
+    <div class="box-giftcardMagic <?php echo $paypal_standar == 1 ? '' : 'hide'; ?>" id="paypal_standar">
         <h4><?php _e('Paypal config','gift-card-magic'); ?></h4>
         <div class="group-setting-giftcardMagic">
             <label class="text-label"><?php _e('Paypal Testmode','gift-card-magic'); ?></label>
             <label class="toggle-giftcardMagic">
-                <input type="checkbox" class="toogle-slider-giftcardMagic" name="gcm_settings_payment[test_mode]" <?php echo $test_mode == 1 ? 'checked' : ''; ?>> 
+                <input type="checkbox" class="toogle-slider-giftcardMagic" name="test_mode" value="1" <?php echo $test_mode == 1 ? 'checked' : ''; ?>> 
                 <span class="toggle-slider-giftcardMagic"></span>
             </label>
+            <input type="hidden" class="toogle-value-giftcardMagic" name="gcm_settings_payment[test_mode]" value="<?php echo $test_mode; ?>"> 
         </div>
         <div class="group-setting-giftcardMagic">
             <label class="text-label"><?php _e('PayPal Client ID','gift-card-magic'); ?><br>
@@ -102,7 +104,7 @@ function gift_card_magic_payment_tab_action() {
             </div>
         </div>
     </div>
-    <div class="box-giftcardMagic hide" id="stripe">
+    <div class="box-giftcardMagic <?php echo $stripe == 1 ? '' : 'hide'; ?>" id="stripe">
         <h4><?php _e('Stripe config','gift-card-magic'); ?></h4>          
         <div class="group-setting-giftcardMagic">
             <label class="text-label"><?php _e('Stripe Publishable key','gift-card-magic'); ?><br>

@@ -119,36 +119,58 @@ function gift_card_magic_settings_page()
         }
 
         // Retrieve data from the form and convert to appropriate data types
-        $minimum_voucher_value = intval($_POST['minimum_voucher_value']);
-        $maximum_voucher_value = intval($_POST['maximum_voucher_value']);
-        $voucher_expiry_value = intval($_POST['voucher_expiry_value']);
-        $expiry_date_format = sanitize_text_field($_POST['expiry_date_format']);
-        $hide_voucher_first_step = isset($_POST['hide_voucher_first_step']) ? intval($_POST['hide_voucher_first_step']) : 0;
-        $hide_price_from_voucher = isset($_POST['hide_price_from_voucher']) ? intval($_POST['hide_price_from_voucher']) : 0;
-        $voucher_preview_button = isset($_POST['voucher_preview_button']) ? intval($_POST['voucher_preview_button']) : 0;
-        $custom_loader_url = sanitize_text_field($_POST['custom_loader_url']);
+        // $minimum_voucher_value = intval($_POST['minimum_voucher_value']);
+        // $maximum_voucher_value = intval($_POST['maximum_voucher_value']);
+        // $voucher_expiry_value = intval($_POST['voucher_expiry_value']);
+        // $expiry_date_format = sanitize_text_field($_POST['expiry_date_format']);
+        // $hide_voucher_first_step = isset($_POST['hide_voucher_first_step']) ? intval($_POST['hide_voucher_first_step']) : 0;
+        // $hide_price_from_voucher = isset($_POST['hide_price_from_voucher']) ? intval($_POST['hide_price_from_voucher']) : 0;
+        // $voucher_preview_button = isset($_POST['voucher_preview_button']) ? intval($_POST['voucher_preview_button']) : 0;
+        // $custom_loader_url = sanitize_text_field($_POST['custom_loader_url']);
 
         // Proceed to update data in the wp_gcm_settings table
+        //global $wpdb;
+        // $table_name = $wpdb->prefix . 'gcm_settings';
+
+        // $data = array(
+        //     'minimum_voucher_value' => $minimum_voucher_value,
+        //     'maximum_voucher_value' => $maximum_voucher_value,
+        //     'voucher_expiry_value' => $voucher_expiry_value,
+        //     'expiry_date_format' => $expiry_date_format,
+        //     'hide_voucher_first_step' => $hide_voucher_first_step,
+        //     'hide_price_from_voucher' => $hide_price_from_voucher,
+        //     'voucher_preview_button' => $voucher_preview_button,
+        //     'custom_loader_url' => $custom_loader_url
+        // );
+
+        // $where = array(
+        //     'id' => 1 // WHERE condition
+        // );
+
+        // $check = $wpdb->update($table_name, $data, $where);
         global $wpdb;
-        $table_name = $wpdb->prefix . 'gcm_settings';
 
-        $data = array(
-            'minimum_voucher_value' => $minimum_voucher_value,
-            'maximum_voucher_value' => $maximum_voucher_value,
-            'voucher_expiry_value' => $voucher_expiry_value,
-            'expiry_date_format' => $expiry_date_format,
-            'hide_voucher_first_step' => $hide_voucher_first_step,
-            'hide_price_from_voucher' => $hide_price_from_voucher,
-            'voucher_preview_button' => $voucher_preview_button,
-            'custom_loader_url' => $custom_loader_url
+        // Update data in gcm_settings_payment table
+        $check_payment = $wpdb->update(
+            $wpdb->prefix . 'gcm_settings_payment', // Replace with your actual table name
+            $_POST['gcm_settings_payment'], // Data to update
+            array('id' => 1) // Update condition, change as per your needs
         );
 
-        $where = array(
-            'id' => 1 // WHERE condition
+        // Update data in gcm_settings_frontend table
+        $check_frontend = $wpdb->update(
+            $wpdb->prefix . 'gcm_settings_frontend', // Replace with your actual table name
+            $_POST['gcm_settings_frontend'], // Data to update
+            array('id' => 1) // Update condition, change as per your needs
         );
 
-        $check = $wpdb->update($table_name, $data, $where);
-        if ($check !== false) {
+        // Update data in gcm_settings table
+        $check_settings = $wpdb->update(
+            $wpdb->prefix . 'gcm_settings', // Replace with your actual table name
+            $_POST['gcm_settings'], // Data to update
+            array('id' => 1) // Update condition, change as per your needs
+        );
+        if ($check_payment !== false && $check_frontend !== false && $check_settings !== false) {
             add_settings_error('settings_saved', 'settings_saved', 'Settings data saved successfully.', 'updated');
         }
     }

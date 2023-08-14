@@ -120,19 +120,32 @@ jQuery(document).ready(function ($) {
     }
   }
 
-  $('.toogle-slider-giftcardMagic[name="gcm_settings_frontend[show_name]"]').on('change', function () {
+  $('.toogle-slider-giftcardMagic[name="show_name"]').on('change', function () {
     toggleGroup(this, 'your_name');
   });
 
-  $('.toogle-slider-giftcardMagic[name="gcm_settings_frontend[show_recipient_name]"]').on('change', function () {
+  $('.toogle-slider-giftcardMagic[name="show_recipient_name"]').on('change', function () {
     toggleGroup(this, 'from_name');
   });
 
-  $('.toogle-slider-giftcardMagic[name="gcm_settings_frontend[show_voucher_value]"]').on('change', function () {
+  $('.toogle-slider-giftcardMagic[name="show_voucher_value"]').on('change', function () {
     toggleGroup(this, 'voucher_value');
   });
   $('.toggle-giftcardMagic input[data-id]').click(function(){
     var data_id = $(this).attr('data-id');
     $('#'+data_id).toggleClass('hide');
+  });
+  $('.toogle-slider-giftcardMagic').click(function(){
+    if($(this).is(':checked')) {
+      $(this).closest('.group-setting-giftcardMagic').find('.toogle-value-giftcardMagic').val(1);
+    } else {
+      $(this).closest('.group-setting-giftcardMagic').find('.toogle-value-giftcardMagic').val(0);
+    }
+  });
+  $('input[name="gcm_settings_frontend[background_color]"]').change(function(){
+    $('.wrap-item-giftcardMagic').css('background-color',$(this).val());
+  })
+  $('input[name="gcm_settings_frontend[text_color]"]').change(function(){
+    $(this).closest('.box-giftcardMagic').find('.group-giftcardMagic').css('color',$(this).val());
   })
 });

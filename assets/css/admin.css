@@ -309,12 +309,13 @@ label.toggle-giftcardMagic {
 }
 .preview-logo {
     display: none;
-    margin-left: 10px;
+    margin-left: 0;
+    margin-bottom: 20px;
     width: 100px;
     vertical-align: middle;
 }
 .preview-logo.show {
-    display: inline-block;
+    display: block;
 }
 img#image_url {
     width: 100%;
@@ -394,4 +395,7 @@ img#image_url {
     100% {
       transform: rotate(-360deg);
     }
+}
+.group-giftcardMagic.hide {
+    display: none;
 }

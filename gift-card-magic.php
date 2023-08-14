@@ -193,6 +193,7 @@ function gift_card_magic_custom_filter($content)
     return $content;
 }
 
+require_once $plugin_dir . 'includes/backend/shortcode.php';
 // Call the plugin initialization function
 add_action('plugins_loaded', 'gift_card_magic_initialize');
 
