@@ -92,6 +92,13 @@ function gift_card_magic_enqueue_scripts()
         '1.0', // Version number (optional)
         true // Enqueue the script in the footer
     );
+    wp_register_script(
+        'gift-card-magic-step', // Handle/slug for the script
+        plugin_dir_url(__FILE__) . 'assets/js/jquery.steps.js', // Path to the JavaScript file
+        array('jquery-steps'), // Dependencies (if any)
+        '1.0', // Version number (optional)
+        true // Enqueue the script in the footer
+    );
     wp_localize_script('gift-card-magic-backend', 'pluginData', array(
         'siteUrl' => esc_url(site_url())
     )); 

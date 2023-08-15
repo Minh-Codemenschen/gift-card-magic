@@ -26,15 +26,15 @@ $plugin_dir = plugin_dir_path(__FILE__);
 
 // Load the action files
 require_once $plugin_dir . 'admin.php';
-
+include_once $plugin_dir . 'includes/frontend/shortcode_giftcardmagic.php'; // Gọi tệp chứa mã shortcode
 
 function gift_card_magic_register_styles() {
     // Đăng ký file CSS
     wp_enqueue_style('gift-card-magic-admin', plugin_dir_url(__FILE__) . 'assets/css/admin.css', array(), '1.0.0', 'all');
+    wp_enqueue_style('gift-card-magic-step', plugin_dir_url(__FILE__) . 'assets/css/jquery.steps.css', array(), '1.0.0', 'all');
 }
 
 add_action('admin_enqueue_scripts', 'gift_card_magic_register_styles');
-
 
 
 // Callback function for plugin activation
