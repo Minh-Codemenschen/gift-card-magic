@@ -40,6 +40,15 @@ function gift_card_magic_enqueue_frontend_scripts()
 
     // Register and enqueue jQuery Steps
     wp_enqueue_script(
+        'jquery-validate', // Handle/slug for the script
+        $plugin_dir . 'assets/js/jquery.validate.js', // Path to the JavaScript file
+        array('jquery'), // Dependencies
+        '1.0', // Version number (optional)
+        true // Enqueue the script in the footer
+    );
+
+    // Register and enqueue jQuery Steps
+    wp_enqueue_script(
         'jquery-steps', // Handle/slug for the script
         $plugin_dir . 'assets/js/jquery.steps.js', // Path to the JavaScript file
         array('jquery'), // Dependencies
@@ -69,10 +78,12 @@ function giftcardmagic_enqueue_styles() {
     $plugin_dir = plugin_dir_url(__FILE__);
 
     // Đăng ký tệp CSS của bạn
-    wp_register_style('giftcardmagic-style', $plugin_dir . 'assets/css/jquery.steps.css');
+    wp_register_style('giftcardmagic-step', $plugin_dir . 'assets/css/jquery.steps.css');
+    wp_register_style('giftcardmagic-custom-step', $plugin_dir . 'assets/css/jquery.steps.css');
 
     // Sử dụng tệp CSS
-    wp_enqueue_style('giftcardmagic-style');
+    wp_enqueue_style('giftcardmagic-step');
+    wp_enqueue_style('giftcardmagic-custom-step');
 }
 add_action('wp_enqueue_scripts', 'giftcardmagic_enqueue_styles');
 
