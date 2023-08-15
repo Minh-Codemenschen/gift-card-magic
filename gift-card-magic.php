@@ -26,15 +26,55 @@ $plugin_dir = plugin_dir_path(__FILE__);
 
 // Load the action files
 require_once $plugin_dir . 'admin.php';
-include_once $plugin_dir . 'includes/frontend/shortcode_giftcardmagic.php'; // Gọi tệp chứa mã shortcode
+require_once $plugin_dir . 'includes/frontend/shortcode_giftcardmagic.php'; // Gọi tệp chứa mã shortcode
 
-function gift_card_magic_register_styles() {
-    // Đăng ký file CSS
-    wp_enqueue_style('gift-card-magic-admin', plugin_dir_url(__FILE__) . 'assets/css/admin.css', array(), '1.0.0', 'all');
-    wp_enqueue_style('gift-card-magic-step', plugin_dir_url(__FILE__) . 'assets/css/jquery.steps.css', array(), '1.0.0', 'all');
+// Register and enqueue the JavaScript files for frontend
+function gift_card_magic_enqueue_frontend_scripts()
+{
+    $plugin_dir = plugin_dir_url(__FILE__);
+
+    // Enqueue jQuery if not already enqueued
+    if (!wp_script_is('jquery', 'enqueued')) {
+        wp_enqueue_script('jquery');
+    }
+
+    // Register and enqueue jQuery Steps
+    wp_enqueue_script(
+        'jquery-steps', // Handle/slug for the script
+        $plugin_dir . 'assets/js/jquery.steps.js', // Path to the JavaScript file
+        array('jquery'), // Dependencies
+        '1.0', // Version number (optional)
+        true // Enqueue the script in the footer
+    );
+
+    // Register and enqueue your custom step script
+    wp_enqueue_script(
+        'custom-step', // Handle/slug for the script
+        $plugin_dir . 'assets/js/custom.step.js', // Path to the JavaScript file
+        array('jquery-steps'), // Dependencies
+        '1.0', // Version number (optional)
+        true // Enqueue the script in the footer
+    );
+
+    // Localize data for scripts
+    wp_localize_script('custom-step', 'pluginData', array(
+        'siteUrl' => esc_url(site_url())
+    ));
 }
+add_action('wp_enqueue_scripts', 'gift_card_magic_enqueue_frontend_scripts');
 
-add_action('admin_enqueue_scripts', 'gift_card_magic_register_styles');
+
+// Đăng ký và sử dụng CSS trong frontend
+function giftcardmagic_enqueue_styles() {
+    $plugin_dir = plugin_dir_url(__FILE__);
+
+    // Đăng ký tệp CSS của bạn
+    wp_register_style('giftcardmagic-style', $plugin_dir . 'assets/css/jquery.steps.css');
+
+    // Sử dụng tệp CSS
+    wp_enqueue_style('giftcardmagic-style');
+}
+add_action('wp_enqueue_scripts', 'giftcardmagic_enqueue_styles');
 
 
 // Callback function for plugin activation
@@ -145,15 +185,15 @@ function gift_card_magic_activate()
             stripe_webhook_secret_key VARCHAR(255),
             PRIMARY KEY (id)
         )";
-        
+
 
         // Include the necessary WordPress file
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
         // Execute the SQL statement to create the table 'gcm_payment'
-        dbDelta($sql_payment);     
+        dbDelta($sql_payment);
 
-        
+
         $wpdb->insert(
             $table_payment,
             array(
@@ -172,7 +212,6 @@ function gift_card_magic_activate()
             )
         );
     }
-    
 }
 register_activation_hook(__FILE__, 'gift_card_magic_activate');
 
@@ -196,8 +235,3 @@ function gift_card_magic_custom_filter($content)
 require_once $plugin_dir . 'includes/backend/shortcode.php';
 // Call the plugin initialization function
 add_action('plugins_loaded', 'gift_card_magic_initialize');
-
-
-
-
-

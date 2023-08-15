@@ -80,33 +80,36 @@ function gift_card_magic_remove_from_main_menu()
 
 add_action('admin_menu', 'gift_card_magic_remove_from_main_menu');
 
-// Register and enqueue the JavaScript file
-function gift_card_magic_enqueue_scripts()
-{
+// Register and enqueue the JavaScript file for backend
+function gift_card_magic_enqueue_backend_scripts() {
+    $plugin_dir = plugin_dir_url(__FILE__);
+
     wp_enqueue_media();
-    // Register the script
-    wp_register_script(
+
+    // Register and enqueue the backend script
+    wp_enqueue_script(
         'gift-card-magic-backend', // Handle/slug for the script
-        plugin_dir_url(__FILE__) . 'assets/js/backend.js', // Path to the JavaScript file
-        array('jquery'), // Dependencies (if any)
+        $plugin_dir . 'assets/js/backend.js', // Path to the JavaScript file
+        array('jquery'), // Dependencies
         '1.0', // Version number (optional)
         true // Enqueue the script in the footer
     );
-    wp_register_script(
-        'gift-card-magic-step', // Handle/slug for the script
-        plugin_dir_url(__FILE__) . 'assets/js/jquery.steps.js', // Path to the JavaScript file
-        array('jquery-steps'), // Dependencies (if any)
-        '1.0', // Version number (optional)
-        true // Enqueue the script in the footer
-    );
+
+    // Localize data for the script
     wp_localize_script('gift-card-magic-backend', 'pluginData', array(
         'siteUrl' => esc_url(site_url())
-    )); 
-
-    // Enqueue the script
-    wp_enqueue_script('gift-card-magic-backend');
+    ));
 }
-add_action('admin_enqueue_scripts', 'gift_card_magic_enqueue_scripts');
+add_action('admin_enqueue_scripts', 'gift_card_magic_enqueue_backend_scripts');
+
+
+function gift_card_magic_register_styles()
+{
+    // Đăng ký file CSS
+    wp_enqueue_style('gift-card-magic-admin', plugin_dir_url(__FILE__) . 'assets/css/admin.css', array(), '1.0.0', 'all');
+}
+
+add_action('admin_enqueue_scripts', 'gift_card_magic_register_styles');
 
 
 // Callback function to display the submenu page content - Dashboard
@@ -124,35 +127,6 @@ function gift_card_magic_settings_page()
         if (!current_user_can('manage_options')) {
             wp_die('Unauthorized access', 'Unauthorized', array('response' => 403));
         }
-
-        // Retrieve data from the form and convert to appropriate data types
-        // $minimum_voucher_value = intval($_POST['minimum_voucher_value']);
-        // $maximum_voucher_value = intval($_POST['maximum_voucher_value']);
-        // $voucher_expiry_value = intval($_POST['voucher_expiry_value']);
-        // $expiry_date_format = sanitize_text_field($_POST['expiry_date_format']);
-        // $hide_voucher_first_step = isset($_POST['hide_voucher_first_step']) ? intval($_POST['hide_voucher_first_step']) : 0;
-        // $hide_price_from_voucher = isset($_POST['hide_price_from_voucher']) ? intval($_POST['hide_price_from_voucher']) : 0;
-        // $voucher_preview_button = isset($_POST['voucher_preview_button']) ? intval($_POST['voucher_preview_button']) : 0;
-        // $custom_loader_url = sanitize_text_field($_POST['custom_loader_url']);
-
-        // Proceed to update data in the wp_gcm_settings table
-        //global $wpdb;
-        // $table_name = $wpdb->prefix . 'gcm_settings';
-
-        // $data = array(
-        //     'minimum_voucher_value' => $minimum_voucher_value,
-        //     'maximum_voucher_value' => $maximum_voucher_value,
-        //     'voucher_expiry_value' => $voucher_expiry_value,
-        //     'expiry_date_format' => $expiry_date_format,
-        //     'hide_voucher_first_step' => $hide_voucher_first_step,
-        //     'hide_price_from_voucher' => $hide_price_from_voucher,
-        //     'voucher_preview_button' => $voucher_preview_button,
-        //     'custom_loader_url' => $custom_loader_url
-        // );
-
-        // $where = array(
-        //     'id' => 1 // WHERE condition
-        // );
 
         // $check = $wpdb->update($table_name, $data, $where);
         global $wpdb;
