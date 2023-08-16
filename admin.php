@@ -85,6 +85,7 @@ function gift_card_magic_enqueue_backend_scripts() {
     $plugin_dir = plugin_dir_url(__FILE__);
 
     wp_enqueue_media();
+    wp_enqueue_editor();
 
     // Register and enqueue the backend script
     wp_enqueue_script(
@@ -163,6 +164,7 @@ function gift_card_magic_settings_page()
     require_once $plugin_dir . 'includes/backend/settings_file.php';
     require_once $plugin_dir . 'includes/backend/frontend_file.php';
     require_once $plugin_dir . 'includes/backend/payment_file.php';
+    require_once $plugin_dir . 'includes/backend/email.php';
 ?>
     <div class="wrap">
     
@@ -174,6 +176,7 @@ function gift_card_magic_settings_page()
                 <a href="#" class="nav-tab nav-tab-active" data-tab="settings">Settings</a>
                 <a href="#" class="nav-tab" data-tab="frontend">Frontend</a>
                 <a href="#" class="nav-tab" data-tab="payment">Payment</a>
+                <a href="#" class="nav-tab" data-tab="email">Email</a>
             </h2>
             <div id="tab-content">
                 <div id="tab-settings" class="tab-panel">
@@ -184,6 +187,9 @@ function gift_card_magic_settings_page()
                 </div>
                 <div id="tab-payment" class="tab-panel" style="display:none">
                     <?php do_action('gift_card_magic_payment_tab'); ?>
+                </div>
+                <div id="tab-email" class="tab-panel" style="display:none">
+                    <?php do_action('gift_card_magic_email_tab'); ?>
                 </div>
             </div>
             <div class="sidebar-giftcardMagic">
