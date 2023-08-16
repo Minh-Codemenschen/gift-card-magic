@@ -1,5 +1,5 @@
 jQuery(document).ready(function ($) {
-    var form = $("#contact");
+    var form = $("#gcm-viewmode-slide");
     form.validate({
         errorPlacement: function errorPlacement(error, element) { element.before(error); },
         rules: {
