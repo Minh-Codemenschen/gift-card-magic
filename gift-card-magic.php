@@ -28,42 +28,20 @@ $plugin_dir = plugin_dir_path(__FILE__);
 require_once $plugin_dir . 'admin.php';
 require_once $plugin_dir . 'includes/frontend/shortcode_giftcardmagic.php'; // Gọi tệp chứa mã shortcode
 
-// Register and enqueue the JavaScript files for frontend
 function gift_card_magic_enqueue_frontend_scripts()
 {
     $plugin_dir = plugin_dir_url(__FILE__);
 
-    // Enqueue jQuery if not already enqueued
-    if (!wp_script_is('jquery', 'enqueued')) {
-        wp_enqueue_script('jquery');
-    }
+    // Enqueue jQuery
+    wp_enqueue_script('jquery');
 
-    // Register and enqueue jQuery Steps
-    wp_enqueue_script(
-        'jquery-validate', // Handle/slug for the script
-        $plugin_dir . 'assets/js/jquery.validate.js', // Path to the JavaScript file
-        array('jquery'), // Dependencies
-        '1.0', // Version number (optional)
-        true // Enqueue the script in the footer
-    );
+    // Enqueue scripts with dependencies
+    wp_enqueue_script('jquery-validate', $plugin_dir . 'assets/js/jquery.validate.js', array('jquery'), '1.0', true);
+    wp_enqueue_script('jquery-steps', $plugin_dir . 'assets/js/jquery.steps.js', array('jquery'), '1.0', true);
+    wp_enqueue_script('slick-slide', $plugin_dir . 'assets/js/slick.min.js', array('jquery'), '1.0', true);
 
-    // Register and enqueue jQuery Steps
-    wp_enqueue_script(
-        'jquery-steps', // Handle/slug for the script
-        $plugin_dir . 'assets/js/jquery.steps.js', // Path to the JavaScript file
-        array('jquery'), // Dependencies
-        '1.0', // Version number (optional)
-        true // Enqueue the script in the footer
-    );
-
-    // Register and enqueue your custom step script
-    wp_enqueue_script(
-        'custom-step', // Handle/slug for the script
-        $plugin_dir . 'assets/js/custom.step.js', // Path to the JavaScript file
-        array('jquery-steps'), // Dependencies
-        '1.0', // Version number (optional)
-        true // Enqueue the script in the footer
-    );
+    // Enqueue Custom Step Script with jQuery Steps as dependency
+    wp_enqueue_script('custom-step', $plugin_dir . 'assets/js/custom.step.js', array('jquery-steps'), '1.0', true);
 
     // Localize data for scripts
     wp_localize_script('custom-step', 'pluginData', array(
@@ -73,6 +51,7 @@ function gift_card_magic_enqueue_frontend_scripts()
 add_action('wp_enqueue_scripts', 'gift_card_magic_enqueue_frontend_scripts');
 
 
+
 // Đăng ký và sử dụng CSS trong frontend
 function giftcardmagic_enqueue_styles() {
     $plugin_dir = plugin_dir_url(__FILE__);
@@ -80,10 +59,12 @@ function giftcardmagic_enqueue_styles() {
     // Đăng ký tệp CSS của bạn
     wp_register_style('giftcardmagic-step', $plugin_dir . 'assets/css/jquery.steps.css');
     wp_register_style('giftcardmagic-custom-step', $plugin_dir . 'assets/css/jquery.steps.css');
+    wp_register_style('giftcardmagic-slick-slide', $plugin_dir . 'assets/css/slick_slick.css');
 
     // Sử dụng tệp CSS
     wp_enqueue_style('giftcardmagic-step');
     wp_enqueue_style('giftcardmagic-custom-step');
+    wp_enqueue_style('giftcardmagic-slick-slide');
 }
 add_action('wp_enqueue_scripts', 'giftcardmagic_enqueue_styles');
 

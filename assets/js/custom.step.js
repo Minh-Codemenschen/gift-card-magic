@@ -11,7 +11,7 @@ jQuery(document).ready(function ($) {
     form.children("div").steps({
         headerTag: "h3",
         bodyTag: "section",
-        transitionEffect: "slideLeft",
+        transitionEffect: "fade",
         onStepChanging: function (event, currentIndex, newIndex) {
             form.validate().settings.ignore = ":disabled,:hidden";
             return form.valid();
@@ -23,5 +23,14 @@ jQuery(document).ready(function ($) {
         onFinished: function (event, currentIndex) {
             alert("Submitted!");
         }
+    });
+});
+jQuery(document).ready(function ($) {
+    jQuery('.slide-tep-1').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        adaptiveHeight: true, // Đảm bảo chiều cao thích hợp cho các slide
+        dots: true, // Hiển thị điểm chuyển slide
+        // Các tùy chọn khác của Slick Slide tùy theo yêu cầu của bạn
     });
 });
