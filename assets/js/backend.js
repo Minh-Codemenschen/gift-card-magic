@@ -147,5 +147,22 @@ jQuery(document).ready(function ($) {
   })
   $('input[name="gcm_settings_frontend[text_color]"]').change(function(){
     $(this).closest('.box-giftcardMagic').find('.group-giftcardMagic').css('color',$(this).val());
-  })
+  });
+  var editorSettings = {
+    // Settings for the first editor
+    textarea_name: 'gcm_email[buyer_email_subject]',
+
+    // Customize other settings as needed
+
+  };
+  tinymce.init(editorSettings);
+
+  var editorSettings2 = {
+      // Settings for the second editor
+      textarea_name: 'gcm_email[buyer_email_body]',
+
+      // Customize other settings as needed
+
+  };
+  tinymce.init(editorSettings2);
 });
