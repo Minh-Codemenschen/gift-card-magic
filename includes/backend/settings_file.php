@@ -86,6 +86,12 @@ function gift_card_magic_settings_tab_action() {
                     <input type="text" class="field-giftcardMagic" name="gcm_settings[custom_loader_url]" value="<?php echo $custom_loader_url; ?>" max="250">
                 </div>
             </div>
+            <div class="group-setting-giftcardMagic">
+                <label class="text-label"></label>
+                <div class="wrap-field">
+                    <input type="file" class="" name="upload-media">
+                </div>
+            </div>
         </div>
     </div>
     <?php 
