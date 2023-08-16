@@ -7,24 +7,31 @@ function giftcardmagic_shortcode($atts)
     ), $atts);
 
     ob_start();
+    
+    
+
     if ($atts['style'] === 'list') {
         // Mã HTML cho style "list"
+
+
+        
     } elseif ($atts['style'] === 'slide') {
         // Mã HTML cho style "slide"
         echo '<div class="container">';
-        echo '<form id="contact" action="#">';
+        echo '<form id="gcm-viewmode-slide" action="#">';
         echo '<div>';
         echo '<h3>Step1</h3>';
         echo '<section class="step1">';
         echo '<div class="slide-tep-1">';
-        $gift_cards = new WP_Query(array(
+
+        $gift_cards_slide = new WP_Query(array(
             'post_type' => 'gift_card_magic',
             'posts_per_page' => -1, // Lấy tất cả bài viết
         ));
 
-        if ($gift_cards->have_posts()) {
-            while ($gift_cards->have_posts()) {
-                $gift_cards->the_post();
+        if ($gift_cards_slide->have_posts()) {
+            while ($gift_cards_slide->have_posts()) {
+                $gift_cards_slide->the_post();
                 $image_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
                 if (empty($image_url)) {
                     // Đường dẫn ảnh demo từ plugin
