@@ -76,6 +76,8 @@ function gift_card_magic_activate()
     $table_settings = $wpdb->prefix . 'gcm_settings';
     $table_settings_frontend = $wpdb->prefix . 'gcm_settings_frontend';
     $table_payment = $wpdb->prefix . 'gcm_settings_payment';
+    $table_setting_email = $wpdb->prefix . 'gcm_settings_email';
+
 
     // Check if the table 'gcm_settings' already exists in the database
     if ($wpdb->get_var("SHOW TABLES LIKE '$table_settings'") != $table_settings) {
@@ -201,6 +203,46 @@ function gift_card_magic_activate()
                 'stripe_secret_key' => '',
                 'stripe_webhook_url' => '',
                 'stripe_webhook_secret_key' => '',
+            )
+        );
+    }
+
+    // Check if the table 'gcm_settings_email' already exists in the database
+    if ($wpdb->get_var("SHOW TABLES LIKE '$table_setting_email'") != $table_setting_email) {
+        // Define the SQL statement for creating the table 'gcm_settings_email'
+        $sql_settings_email = "CREATE TABLE $table_setting_email (
+            id INT(11) NOT NULL AUTO_INCREMENT,
+            sender_name VARCHAR(255),
+            sender_email VARCHAR(255),
+            send_customer_receipt VARCHAR(10),
+            buyer_email_subject LONGTEXT,
+            buyer_email_body LONGTEXT,
+            PRIMARY KEY (id)
+        )";
+
+
+        // Include the necessary WordPress file
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+        // Execute the SQL statement to create the table 'gcm_settings_email'
+        dbDelta($sql_settings_email);
+
+
+        $wpdb->insert(
+            $table_setting_email,
+            array(
+                'sender_name' => 'Example',
+                'sender_email' => 'example@gmail.com',
+                'send_customer_receipt' => 1,
+                'buyer_email_subject' => 'Order Confirmation - Your Order with {company_name} (Voucher Order No: {order_number} ) has been successfully placed!',
+                'buyer_email_body' => '<p>Dear <strong>{customer_name}</strong>,</p>
+                <p>Order successfully placed.</p>
+                <p>We are pleased to confirm your order no {order_number}</p>
+                <p>Thank you for shopping with <strong>{company_name}</strong>!</p>
+                <p>You can download the voucher from {pdf_link}.</p>
+                <p>- For any clarifications please feel free to email us at {sender_email}.</p>
+                <p>Thanking you once again for your patronage.</p>
+                <p><strong>Warm Regards, <br /></strong> <strong>{company_name}</strong></p>',
             )
         );
     }

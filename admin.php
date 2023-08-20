@@ -152,7 +152,15 @@ function gift_card_magic_settings_page()
             $_POST['gcm_settings'], // Data to update
             array('id' => 1) // Update condition, change as per your needs
         );
-        if ($check_payment !== false && $check_frontend !== false && $check_settings !== false) {
+
+        // Update data in gcm_settings table
+        $check_email = $wpdb->update(
+            $wpdb->prefix . 'gcm_settings_email', // Replace with your actual table name
+            $_POST['gcm_email'], // Data to update
+            array('id' => 1) // Update condition, change as per your needs
+        );
+        
+        if ($check_payment !== false && $check_frontend !== false && $check_settings !== false && $check_email !== false) {
             add_settings_error('settings_saved', 'settings_saved', 'Settings data saved successfully.', 'updated');
         }
     }

@@ -35,7 +35,6 @@ function gift_card_magic_frontend_tab_action() {
         if($show_voucher_value == 0) {
             $display_voucher_value = 'hide';
         }
-        echo $display_name;
     } ?>
     <div class="box-giftcardMagic">
         <div class="top-giftcardMagic">
