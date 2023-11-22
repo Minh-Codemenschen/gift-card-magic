@@ -57,6 +57,7 @@ function giftcardmagic_enqueue_styles() {
     $plugin_dir = plugin_dir_url(__FILE__);
 
     // Đăng ký tệp CSS của bạn
+    wp_register_style('giftcardmagic-step', $plugin_dir . 'assets/css/style.css');
     wp_register_style('giftcardmagic-step', $plugin_dir . 'assets/css/jquery.steps.css');
     wp_register_style('giftcardmagic-custom-step', $plugin_dir . 'assets/css/jquery.steps.css');
     wp_register_style('giftcardmagic-slick-slide', $plugin_dir . 'assets/css/slick_slick.css');

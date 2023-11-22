@@ -10,12 +10,9 @@ function giftcardmagic_shortcode($atts)
     
     
 
-    if ($atts['style'] === 'list') {
-        // Mã HTML cho style "list"
-
-
+    if ($atts['style'] === 'list') { ?>
         
-    } elseif ($atts['style'] === 'slide') {
+    <?php } elseif ($atts['style'] === 'slide') {
         // Mã HTML cho style "slide"
         echo '<div class="container">';
         echo '<form id="gcm-viewmode-slide" action="#">';
@@ -84,7 +81,7 @@ function giftcardmagic_shortcode($atts)
         echo '</form>';
         echo '</div>';
     } else {
-        // Mã HTML mặc định
+        require_once plugin_dir_path(__FILE__) . '../backend/template_1.php';
     }
     return ob_get_clean();
 }

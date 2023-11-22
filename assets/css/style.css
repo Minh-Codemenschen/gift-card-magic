@@ -1,0 +1,131 @@
+.item-giftcardMagic * {
+    box-sizing: border-box;
+}
+body .item-giftcardMagic {
+    width: 544px;
+    border-radius: 20px;
+    border: 1px solid #CCCCCC;
+    max-width: 100%;
+    font-family: 'Roboto';
+}
+body .item-giftcardMagic * {
+    font-family: 'Roboto';
+}
+.image-giftcardMagic {
+    padding-top: 80%;
+    position: relative;
+}
+.image-giftcardMagic img.logo {
+    width: 98px;
+    height: 98px;
+    object-position: center;
+    object-fit: contain;
+    display: block;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+.group-giftcardMagic {
+    width: 100%;
+    margin-bottom: 6px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.content-giftcardMagic {
+    padding: 16px 50px 20px;
+    position: relative;
+}
+.block-title-giftcardMagic {
+    color: #00A49D;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #CCCCCC;
+    margin-bottom: 22px;
+}
+.item-giftcardMagic h3.title-giftcardMagic {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 300;
+    line-height: 42px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+p.price-giftcardMagic {
+    font-family: 'Roboto';
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 42px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin: 0;
+}
+.group-giftcardMagic label,
+.group-giftcardMagic .input-giftcardMagic {
+    font-family: 'Roboto';
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: left;
+    display: inline-block;
+    padding: 5px;
+    color: #282828;
+}
+.group-giftcardMagic label {
+    font-weight: 500;
+    width: 100px;
+}
+.group-giftcardMagic .input-giftcardMagic {
+    max-width: calc(100% - 100px);
+    border: 0;
+    border-radius: 0;
+    width: 100%;
+    padding: 5px;
+    border: 0;
+    font-weight: 400;
+    pointer-events: none;
+}
+textarea.input-giftcardMagic {
+    min-height: 30px;
+}
+.wrap-input-giftcardMagic {
+    position: relative;
+}
+.wrap-input-giftcardMagic .input-giftcardMagic {
+    padding-left: 20px;
+}
+.terms-giftcardMagic {
+    position: absolute;
+    bottom: 10px;
+    transform-origin: bottom left;
+    font-size: 11px;
+    left: 18px;
+    transform: rotate(-90deg);
+}
+.info-giftcardMagic {
+    width: 100%;
+    display: flex;
+}
+.info-giftcardMagic a {
+    display: inline-block;
+    padding: 0 5px;
+    color: #282828;
+    text-decoration: none;
+}
+.info-giftcardMagic .col-info-giftcardMagic {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 15px;
+}
+.info-giftcardMagic img.qr {
+    position: absolute;
+    right: 50px;
+    bottom: 20px;
+    width: 71px;
+    height: 71px;
+    object-fit: contain;
+    object-position: bottom right;
+}
