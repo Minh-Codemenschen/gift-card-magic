@@ -1,6 +1,4 @@
-
-
-<div class="item-giftcardMagic" style="background:url(<?php echo plugin_dir_url( __FILE__ ); ?>../../assets/images/background-demo-1.png) no-repeat top center/100% auto;">
+<div class="item-giftcardMagic" style="background-image:url(<?php echo plugin_dir_url( __FILE__ ); ?>../../assets/images/background-demo-1.png) ;">
     <div class="image-giftcardMagic">
         <img src="<?php echo plugin_dir_url( __FILE__ ); ?>../../assets/images/logo.png" alt="logo company" class="logo">
     </div>

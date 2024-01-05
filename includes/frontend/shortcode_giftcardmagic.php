@@ -80,9 +80,10 @@ function giftcardmagic_shortcode($atts)
         echo '</div>';
         echo '</form>';
         echo '</div>';
-    } else {
-        require_once plugin_dir_path(__FILE__) . '../backend/template_1.php';
-    }
+    } else { ?>
+        
+        <?php require_once plugin_dir_path(__FILE__) . '../backend/template_1.php'; ?>
+    <?php }
     return ob_get_clean();
 }
 add_shortcode('giftcardmagic', 'giftcardmagic_shortcode');

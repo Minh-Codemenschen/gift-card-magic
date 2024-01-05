@@ -7,6 +7,10 @@ body .item-giftcardMagic {
     border: 1px solid #CCCCCC;
     max-width: 100%;
     font-family: 'Roboto';
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100% 100%;
 }
 body .item-giftcardMagic * {
     font-family: 'Roboto';
@@ -18,22 +22,26 @@ body .item-giftcardMagic * {
 .image-giftcardMagic img.logo {
     width: 98px;
     height: 98px;
-    object-position: center;
+    object-position: top center;
     object-fit: contain;
     display: block;
     position: absolute;
-    top: 50px;
+    top: 55px;
     left: 50px;
 }
 .group-giftcardMagic {
     width: 100%;
-    margin-bottom: 6px;
+    margin-bottom: 12px;
     display: flex;
     flex-wrap: wrap;
 }
 .content-giftcardMagic {
-    padding: 16px 50px 20px;
+    padding: 16px 0px 10px;
     position: relative;
+    min-height: 387px;
+    width: 448px;
+    max-width: 96%;
+    margin: 0 auto;
 }
 .block-title-giftcardMagic {
     color: #00A49D;
@@ -41,7 +49,7 @@ body .item-giftcardMagic * {
     justify-content: space-between;
     padding-bottom: 16px;
     border-bottom: 1px solid #CCCCCC;
-    margin-bottom: 22px;
+    margin-bottom: 16px;
 }
 .item-giftcardMagic h3.title-giftcardMagic {
     margin: 0;
@@ -69,22 +77,25 @@ p.price-giftcardMagic {
     letter-spacing: 0em;
     text-align: left;
     display: inline-block;
-    padding: 5px;
+    padding: 0 1px;
     color: #282828;
 }
 .group-giftcardMagic label {
     font-weight: 500;
-    width: 100px;
+    width: 102px;
+    margin-bottom: 0;
 }
 .group-giftcardMagic .input-giftcardMagic {
-    max-width: calc(100% - 100px);
+    width: calc(100% - 107px);
     border: 0;
     border-radius: 0;
-    width: 100%;
-    padding: 5px;
     border: 0;
     font-weight: 400;
     pointer-events: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: transparent;
 }
 textarea.input-giftcardMagic {
     min-height: 30px;
@@ -94,6 +105,10 @@ textarea.input-giftcardMagic {
 }
 .wrap-input-giftcardMagic .input-giftcardMagic {
     padding-left: 20px;
+}
+.info-giftcardMagic {
+    position: relative;
+    margin-top: 34px;
 }
 .terms-giftcardMagic {
     position: absolute;
