@@ -45,54 +45,6 @@ function gift_card_magic_frontend_tab_action() {
     <div class="box-giftcardMagic">
         <div class="inner-box-giftcardMagic">
             <div class="table-setting-giftcardMagic">
-                <div class="item-giftcardMagic" style="background-image:url(<?php echo plugins_url( 'gift-card-magic/assets/images/background-demo-1.png'); ?>) ;">
-                    <div class="image-giftcardMagic">
-                        <img src="<?php echo $company_logo; ?>" alt="logo company" class="logo">
-                    </div>
-                    <div class="content-giftcardMagic">
-                        <div class="block-title-giftcardMagic" style="color:<?php echo $text_color.';';?>">
-                            <h3 class="title-giftcardMagic">GIFT CARD</h3>
-                            <p class="price-giftcardMagic <?php echo $display_voucher_value; ?>">
-                                <span class="value-giftcardMagic"><?php echo $show_voucher_value; ?></span>
-                                <span class="currencySymbol"> $ </span>
-                            </p>                            
-                            <input type="hidden" name="voucher_value" class="input-giftcardMagic" value="50">
-                        </div>
-                        <div style="color:<?php echo $text_color.';'; ?>" class="group-giftcardMagic <?php echo $display_name; ?>">
-                            <label><?php _e('From: ','gift-card-magic'); ?></label>
-                            <input type="text" value="<?php echo $show_name; ?>" class="input-giftcardMagic" name="your_name">
-                        </div>
-                        <div style="color:<?php echo $text_color.';';?>" class="group-giftcardMagic <?php echo $display_recipient_name; ?>">
-                            <label><?php _e('To:','gift-card-magic'); ?></label>
-                            <input type="text" value="<?php echo $show_recipient_name; ?>" name="from_name" class="input-giftcardMagic">
-                        </div>
-                        <div style="color:<?php echo $text_color.';'; ?>" class="group-giftcardMagic full-width-giftcardMagic <?php echo $display_personal_message; ?>">
-                            <label><?php _e('Message:','gift-card-magic'); ?></label>
-                            <textarea name="message" class="input-giftcardMagic"><?php echo $show_personal_message; ?></textarea>
-                        </div>
-                        <div style="color:<?php echo $text_color.';'; ?>" class="group-giftcardMagic">
-                            <label><?php _e('Expiration:','gift-card-magic'); ?></label>
-                            <input type="text" name="expiryCard" class="input-giftcardMagic" value="16.09.2023">
-                        </div>
-                        <div style="color:<?php echo $text_color.';'; ?>" class="group-giftcardMagic">
-                            <label><?php _e('Code:','gift-card-magic'); ?></label>
-                            <input type="text" name="coupon_code" class="input-giftcardMagic" value="6234256841004311">
-                        </div>
-                        <div class="info-giftcardMagic">
-                            <div class="col-info-giftcardMagic">
-                                <a href="mailto:<?php echo $link_company; ?>">
-                                    <?php echo $link_company; ?>
-                                </a> | 
-                                <a href="<?php echo $email_company; ?>">
-                                    <?php echo $email_company; ?>
-                                </a>
-                            </div>
-                            <div class="col-qr">
-                                <img src="<?php echo plugin_dir_url( __FILE__ ); ?>../../assets/images/qr.png" alt="QR Voucher" class="qr">
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="setting-field">
                 <h3><?php _e('Display Field','gift-card-magic'); ?></h3>
